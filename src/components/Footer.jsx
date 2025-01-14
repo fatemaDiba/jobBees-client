@@ -32,9 +32,12 @@ const Footer = () => {
           <h6 className="text-base md:text-lg text-black/80 uppercase  font-bold">
             Company
           </h6>
-          <a className="text-black/80 link-hover  hover:text-light-primary font-medium">
-            About us
-          </a>
+          <Link
+            to="/about"
+            className="text-black/80 link-hover  hover:text-light-primary font-medium"
+          >
+            About Us
+          </Link>
           <Link
             to="/contact"
             className="link-hover text-black/80 hover:text-light-primary font-medium"
@@ -49,15 +52,24 @@ const Footer = () => {
           <h6 className="text-base md:text-lg text-black/80 uppercase  font-bold">
             Legal
           </h6>
-          <a className="link-hover text-black/80 hover:text-light-primary font-medium">
+          <Link
+            to="/term-of-use"
+            className="link-hover text-black/80 hover:text-light-primary font-medium"
+          >
             Terms of use
-          </a>
-          <a className=" link-hover text-black/80 hover:text-light-primary font-medium">
+          </Link>
+          <Link
+            to="/privacy-policy"
+            className=" link-hover text-black/80 hover:text-light-primary font-medium"
+          >
             Privacy policy
-          </a>
-          <a className="link-hover text-black/80 hover:text-light-primary font-medium">
+          </Link>
+          <Link
+            to="/cookie"
+            className="link-hover text-black/80 hover:text-light-primary font-medium"
+          >
             Cookie policy
-          </a>
+          </Link>
         </nav>
       </div>
       <div className="w-11/12 md:container xl:w-10/12 mx-auto">
