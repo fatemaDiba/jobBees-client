@@ -8,24 +8,24 @@
   font-family: "Lato", serif;
 }
 
-.active {
+.link {
   position: relative;
   font-weight: bold;
+  text-decoration: none;
+  color: black;
 }
-.active::after {
+
+.link::after {
   content: "";
   position: absolute;
   left: 0;
   bottom: -0.3rem;
-  width: 0%;
-  transition: 0.7s;
+  width: 0;
+  height: 3px;
+  background-color: #0057d1;
+  transition: width 0.5s ease-in;
 }
-.active::after {
-  content: "" !important;
-  position: absolute !important;
-  left: 0 !important;
-  bottom: -0.3rem !important;
-  width: 100% !important;
-  height: 4px !important;
-  background-color: #0057d1 !important;
+
+.link.active::after {
+  width: 100%; /* Expand underline smoothly when the link is active */
 }

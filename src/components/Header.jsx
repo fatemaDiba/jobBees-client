@@ -22,7 +22,20 @@ const Header = () => {
   const navList = (
     <>
       <li>
-        <NavLink to="/">Home</NavLink>
+        <NavLink
+          to="/"
+          className={({ isActive }) => (isActive ? "active link" : "link")}
+        >
+          Home
+        </NavLink>
+      </li>
+      <li>
+        <Link
+          to="https://github.com/Programming-Hero-Web-Course4/b10a12-client-side-fatemaDiba"
+          className="bg-light-primary/70 hover:bg-blue-700 text-sm px-4 py-2 rounded-md font-semibold dark:text-black"
+        >
+          Join as developer
+        </Link>
       </li>
     </>
   );
@@ -50,7 +63,7 @@ const Header = () => {
             </div>
             <ul
               tabIndex={0}
-              className="menu-sm dropdown-content bg-base-100 rounded-box z-[30] mt-3 w-52 p-2 shadow "
+              className="menu-sm space-y-5 dropdown-content bg-base-100 rounded-box z-[30] mt-3 w-52 p-4 shadow-lg"
             >
               {navList}
             </ul>
@@ -62,13 +75,13 @@ const Header = () => {
         </div>
 
         <div>
-          <div className="hidden lg:flex mr-4">
-            <ul className="menu-horizontal dark:text-white font-semibold px-1 gap-6 text-sm">
+          <div className="hidden lg:flex mr-1 items-center">
+            <ul className="menu-horizontal items-center dark:text-white font-semibold px-1 gap-6 text-sm">
               {navList}
             </ul>
           </div>
           {user ? (
-            <div className="flex gap-4 ">
+            <div className="flex gap-4">
               <Tooltip
                 anchorSelect="#profile-pic"
                 place="bottom"
@@ -101,24 +114,18 @@ const Header = () => {
               </div>
             </div>
           ) : (
-            <div>
+            <div className="space-x-2">
               <Link
                 to="/login"
-                className=" bg-light-primary/70 hover:bg-blue-700 text-sm px-4 py-2 rounded-md font-semibold dark:text-black ml-3"
+                className="bg-light-primary/70 hover:bg-blue-700 text-sm px-4 py-2 rounded-md font-semibold dark:text-black"
               >
                 LogIn
               </Link>
               <Link
                 to="/register"
-                className="  bg-light-primary/70 hover:bg-blue-700 text-sm px-4 py-2 rounded-md font-semibold dark:text-black  ml-3"
+                className="bg-light-primary/70 hover:bg-blue-700 text-sm px-4 py-2 rounded-md font-semibold dark:text-black"
               >
                 Register
-              </Link>
-              <Link
-                to="https://github.com/Programming-Hero-Web-Course4/b10a12-client-side-fatemaDiba"
-                className=" bg-light-primary/70 hover:bg-blue-700 text-sm px-4 py-2 rounded-md font-semibold dark:text-black  ml-3"
-              >
-                Join as developer
               </Link>
             </div>
           )}

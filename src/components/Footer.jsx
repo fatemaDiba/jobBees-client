@@ -11,20 +11,20 @@ const Footer = () => {
           <img src="/assets/logo.png" alt="" className="w-14 md:w-16" />
           <h2 className="text-2xl md:text-4xl font-bold">JobBees</h2>
           <p className="text-black/80 font-medium">
-            Providing reliable service since 2015
+            Providing reliable service since 2022
           </p>
         </div>
         <nav>
           <h6 className="text-base md:text-lg text-black/80 uppercase font-bold">
             Services
           </h6>
-          <a className="link link-hover hover:text-light-primary font-medium">
+          <a className="link-hover text-black/80  hover:text-light-primary font-medium">
             Branding
           </a>
-          <a className="link link-hover  hover:text-light-primary font-medium">
+          <a className="link-hover text-black/80 hover:text-light-primary font-medium">
             Design
           </a>
-          <a className="link link-hover  hover:text-light-primary font-medium">
+          <a className="link-hover text-black/80 hover:text-light-primary font-medium">
             Marketing
           </a>
         </nav>
@@ -32,13 +32,16 @@ const Footer = () => {
           <h6 className="text-base md:text-lg text-black/80 uppercase  font-bold">
             Company
           </h6>
-          <a className="link link-hover  hover:text-light-primary font-medium">
+          <a className="text-black/80 link-hover  hover:text-light-primary font-medium">
             About us
           </a>
-          <a className="link link-hover  hover:text-light-primary font-medium">
+          <Link
+            to="/contact"
+            className="link-hover text-black/80 hover:text-light-primary font-medium"
+          >
             Contact
-          </a>
-          <a className="link link-hover  hover:text-light-primary font-medium">
+          </Link>
+          <a className="link-hover text-black/80 hover:text-light-primary font-medium">
             Jobs
           </a>
         </nav>
@@ -46,13 +49,13 @@ const Footer = () => {
           <h6 className="text-base md:text-lg text-black/80 uppercase  font-bold">
             Legal
           </h6>
-          <a className="link link-hover  hover:text-light-primary font-medium">
+          <a className="link-hover text-black/80 hover:text-light-primary font-medium">
             Terms of use
           </a>
-          <a className="link link-hover  hover:text-light-primary font-medium">
+          <a className=" link-hover text-black/80 hover:text-light-primary font-medium">
             Privacy policy
           </a>
-          <a className="link link-hover  hover:text-light-primary font-medium">
+          <a className="link-hover text-black/80 hover:text-light-primary font-medium">
             Cookie policy
           </a>
         </nav>
