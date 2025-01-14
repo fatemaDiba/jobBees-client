@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import Title from "../hooks/title/Title";
+import Title from "../components/Title";
 
 const Error = () => {
   return (

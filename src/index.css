@@ -7,3 +7,25 @@
 .body {
   font-family: "Lato", serif;
 }
+
+.active {
+  position: relative;
+  font-weight: bold;
+}
+.active::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -0.3rem;
+  width: 0%;
+  transition: 0.7s;
+}
+.active::after {
+  content: "" !important;
+  position: absolute !important;
+  left: 0 !important;
+  bottom: -0.3rem !important;
+  width: 100% !important;
+  height: 4px !important;
+  background-color: #0057d1 !important;
+}
