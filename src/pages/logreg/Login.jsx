@@ -3,11 +3,18 @@ import { Link, useLocation, useNavigate } from "react-router-dom";
 import { FcGoogle } from "react-icons/fc";
 import useAuth from "../../hooks/useAuth";
 import Title from "../../components/Title";
+import { useState } from "react";
+import { FaEye, FaEyeSlash } from "react-icons/fa";
 
 const Login = () => {
+  const [showPass, setShowPass] = useState(false);
   const { oldUser, signInWithGoogle, setLoading } = useAuth();
   const navigate = useNavigate();
   const location = useLocation();
+
+  const handleShowPass = () => {
+    setShowPass(!showPass);
+  };
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -45,7 +52,7 @@ const Login = () => {
       <Title title="Login"></Title>
       <div className="w-11/12 sm:container xl:w-10/12 mx-auto mb-14 mt-32">
         <div className="grid lg:grid-cols-2 gap-8 items-center">
-          <div className="card bg-light-secondary/50 shadow-2xl p-6 lg:p-10">
+          <div className="card bg-light-secondary/50 shadow-2xl">
             <div className="card-body text-white">
               <h2 className="font-bold text-center text-xl text-black/90 md:text-4xl mb-6">
                 <span className="text-light-primary">Login</span> Now
@@ -60,20 +67,33 @@ const Login = () => {
                     name="email"
                     required
                     placeholder="email"
-                    className="input input-bordered"
+                    className="input input-bordered  text-black"
                   />
                 </div>
+                {/* pass */}
                 <div className="form-control mb-4">
                   <label className="label">
                     <span className="label-text">Password</span>
                   </label>
-                  <input
-                    type="password"
-                    name="password"
-                    required
-                    placeholder="password"
-                    className="input input-bordered"
-                  />
+                  <div className="relative">
+                    <input
+                      name="password"
+                      type={showPass ? "text" : "password"}
+                      placeholder="password"
+                      className="input input-bordered w-full  text-black"
+                      required
+                    />
+                    <div
+                      onClick={handleShowPass}
+                      className="absolute top-1/2 transform -translate-y-1/2 right-4 cursor-pointer"
+                    >
+                      {showPass ? (
+                        <FaEyeSlash className="text-lg text-black/80" />
+                      ) : (
+                        <FaEye className="text-lg text-black/80" />
+                      )}
+                    </div>
+                  </div>
                   <label className="label">
                     <a className="label-text-alt link link-hover">
                       Forgot password?

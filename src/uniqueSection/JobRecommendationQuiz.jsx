@@ -1,53 +1,17 @@
-import { useState } from "react";
 import Swal from "sweetalert2";
 
 const JobRecommendationQuiz = () => {
-  const [formData, setFormData] = useState({
-    skills: "",
-    interests: "",
-    availability: "",
-  });
-
-  const recommendations = [
-    { jobTitle: "Web Developer", skillsRequired: "React, JavaScript" },
-    { jobTitle: "Content Writer", skillsRequired: "Writing, Research" },
-    { jobTitle: "Project Manager", skillsRequired: "Leadership, Scheduling" },
-  ];
-
-  const handleChange = (e) => {
-    setFormData({ ...formData, [e.target.name]: e.target.value });
-  };
-
   const handleSubmit = () => {
-    const matchedJob = recommendations.find(
-      (job) =>
-        job.skillsRequired
-          .toLowerCase()
-          .includes(formData.skills.toLowerCase()) &&
-        job.skillsRequired
-          .toLowerCase()
-          .includes(formData.interests.toLowerCase())
-    );
-
-    if (matchedJob) {
-      Swal.fire({
-        title: "Perfect Match!",
-        text: `We recommend the job: ${matchedJob.jobTitle}. Required skills: ${matchedJob.skillsRequired}.`,
-        icon: "success",
-        confirmButtonText: "Great!",
-      });
-    } else {
-      Swal.fire({
-        title: "No perfect match",
-        text: "Based on your inputs, we couldn’t find a perfect match. Try refining your skills and interests!",
-        icon: "info",
-        confirmButtonText: "Try Again",
-      });
-    }
+    Swal.fire({
+      title: "Perfect Match!",
+      text: "We recommend the job: Web Developer or . Required skills: JS, React, Express etc.",
+      icon: "success",
+      confirmButtonText: "Great!",
+    });
   };
 
   return (
-    <div className="w-11/12 md:container xl:w-10/12 mx-auto my-16 px-4">
+    <div className="w-11/12 md:container xl:w-10/12 mx-auto px-4">
       <div className="grid grid-cols-1 md:grid-cols-2 gap-10 items-center">
         {/* Form Section */}
         <div className="text-start">
@@ -67,9 +31,7 @@ const JobRecommendationQuiz = () => {
               <input
                 type="text"
                 name="skills"
-                value={formData.skills}
-                onChange={handleChange}
-                placeholder="E.g., React, JavaScript , writing"
+                placeholder="E.g., React, JavaScript"
                 className="input input-bordered mt-4 w-full"
               />
             </div>
@@ -81,9 +43,7 @@ const JobRecommendationQuiz = () => {
               <input
                 type="text"
                 name="interests"
-                value={formData.interests}
-                onChange={handleChange}
-                placeholder="E.g., Web Development, Content Writing"
+                placeholder="E.g., Web Development"
                 className="input input-bordered mt-4 w-full mx-auto"
               />
             </div>
@@ -94,8 +54,6 @@ const JobRecommendationQuiz = () => {
               </h3>
               <select
                 name="availability"
-                value={formData.availability}
-                onChange={handleChange}
                 className="select select-bordered mt-4 w-full mx-auto"
               >
                 <option value="">Select Availability</option>

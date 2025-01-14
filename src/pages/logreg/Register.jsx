@@ -5,11 +5,18 @@ import Lottie from "lottie-react";
 import register from "../../assets/register.json";
 import useAuth from "../../hooks/useAuth";
 import Title from "../../components/Title";
+import { FaEye, FaEyeSlash } from "react-icons/fa";
+import { useState } from "react";
 
 const Register = () => {
+  const [showPass, setShowPass] = useState(false);
   const { newUser, signInWithGoogle, setLoading } = useAuth();
   const navigate = useNavigate();
   const location = useLocation();
+
+  const handleShowPass = () => {
+    setShowPass(!showPass);
+  };
 
   const handleRegisterBtn = (e) => {
     e.preventDefault();
@@ -60,13 +67,13 @@ const Register = () => {
       <Title title="Register"></Title>
       <div className="w-11/12 sm:container xl:w-10/12 mx-auto mb-14 mt-32">
         <div className="grid lg:grid-cols-2 gap-8 items-center">
-          <div className="card bg-light-secondary/50 shadow-2xl p-4">
+          <div className="card bg-light-secondary/50 shadow-2xl">
             <div className="card-body dark:text-white">
               <h2 className="font-bold text-center text-2xl md:text-4xl mb-6">
                 <span className="text-light-primary">Register</span> Now
               </h2>
               <form onSubmit={handleRegisterBtn}>
-                <div className="">
+                <div className="grid grid-cols-2 gap-3">
                   <div className="form-control">
                     <label className="label">
                       <span className="label-text">Name</span>
@@ -96,7 +103,7 @@ const Register = () => {
                       <span className="label-text">Role</span>
                     </label>
                     <select className="select select-bordered w-full">
-                      <option disabled selected>
+                      <option disabled defaultValue>
                         Role
                       </option>
                       <option>User</option>
@@ -104,6 +111,30 @@ const Register = () => {
                     </select>
                   </div>
                   <div className="form-control">
+                    <label className="label">
+                      <span className="label-text">Password</span>
+                    </label>
+                    <div className="relative">
+                      <input
+                        name="password"
+                        type={showPass ? "text" : "password"}
+                        placeholder="password"
+                        className="input input-bordered w-full  text-black"
+                        required
+                      />
+                      <div
+                        onClick={handleShowPass}
+                        className="absolute top-1/2 transform -translate-y-1/2 right-4 cursor-pointer"
+                      >
+                        {showPass ? (
+                          <FaEyeSlash className="text-lg text-black/80" />
+                        ) : (
+                          <FaEye className="text-lg text-black/80" />
+                        )}
+                      </div>
+                    </div>
+                  </div>
+                  <div className="form-control col-span-2">
                     <label className="label">
                       <span className="label-text">Photo URL</span>
                     </label>
@@ -115,31 +146,14 @@ const Register = () => {
                       required
                     />
                   </div>
-                  <div className="form-control">
-                    <label className="label">
-                      <span className="label-text">Password</span>
-                    </label>
-                    <input
-                      type="password"
-                      name="password"
-                      placeholder="Password"
-                      className="input input-bordered"
-                      required
-                    />
-                  </div>
                 </div>
-                <div className="form-control mt-6">
-                  <label className="label">
-                    <a href="#" className="label-text-alt link link-hover">
-                      Forgot password?
-                    </a>
-                  </label>
+                <div className="form-control mt-10">
                   <button className="btn bg-light-primary/70 hover:bg-blue-700 text-white w-full">
                     Register
                   </button>
                 </div>
               </form>
-              <div className="my-6">
+              <div className="my-2">
                 <p className="text-sm mb-2 text-black">Register with Google</p>
                 <button
                   onClick={handleGoogleBtn}

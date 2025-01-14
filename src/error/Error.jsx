@@ -5,7 +5,7 @@ const Error = () => {
   return (
     <div>
       <Title title="Error"></Title>
-      <section className="relative h-screen z-10 bg-light-primary py-[120px]">
+      <section className="relative h-screen z-10 bg-light-secondary py-[120px]">
         <div className="container mx-auto">
           <div className="-mx-4 flex">
             <div className="w-full px-4">
