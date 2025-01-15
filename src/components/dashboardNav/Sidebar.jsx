@@ -11,12 +11,12 @@ import { FaListCheck } from "react-icons/fa6";
 
 const Sidebar = ({ sidebar }) => {
   const navList = (
-    <div className="list-none space-y-3 !text-black/90 !font-normal">
+    <div className="list-none space-y-4 !text-black/90 !font-normal">
       <li>
         <NavLink
           to="/"
           className={({ isActive }) =>
-            isActive ? "active dashLink" : "dashLink"
+            `${sidebar ? "" : isActive ? "active dashLink" : "dashLink"} `
           }
         >
           <div
@@ -34,7 +34,7 @@ const Sidebar = ({ sidebar }) => {
         <NavLink
           to="/dashboard/manage-task"
           className={({ isActive }) =>
-            isActive ? "active dashLink" : "dashLink"
+            `${sidebar ? "" : isActive ? "active dashLink" : "dashLink"} `
           }
         >
           <div
@@ -53,7 +53,7 @@ const Sidebar = ({ sidebar }) => {
         <NavLink
           to="/dashboard/manage-user"
           className={({ isActive }) =>
-            isActive ? "active dashLink" : "dashLink"
+            `${sidebar ? "" : isActive ? "active dashLink" : "dashLink"} `
           }
         >
           <div
@@ -73,7 +73,7 @@ const Sidebar = ({ sidebar }) => {
         <NavLink
           to="/dashboard/add-task"
           className={({ isActive }) =>
-            isActive ? "active dashLink" : "dashLink"
+            `${sidebar ? "" : isActive ? "active dashLink" : "dashLink"} `
           }
         >
           <div
@@ -90,7 +90,7 @@ const Sidebar = ({ sidebar }) => {
         <NavLink
           to="/dashboard/my-added-task"
           className={({ isActive }) =>
-            isActive ? "active dashLink" : "dashLink"
+            `${sidebar ? "" : isActive ? "active dashLink" : "dashLink"} `
           }
         >
           <div
@@ -107,7 +107,7 @@ const Sidebar = ({ sidebar }) => {
         <NavLink
           to="/dashboard/payment-history"
           className={({ isActive }) =>
-            isActive ? "active dashLink" : "dashLink"
+            `${sidebar ? "" : isActive ? "active dashLink" : "dashLink"} `
           }
         >
           <div
@@ -126,7 +126,7 @@ const Sidebar = ({ sidebar }) => {
         <NavLink
           to="/dashboard/purchase-coin"
           className={({ isActive }) =>
-            isActive ? "active dashLink" : "dashLink"
+            `${sidebar ? "" : isActive ? "active dashLink" : "dashLink"} `
           }
         >
           <div
@@ -146,7 +146,7 @@ const Sidebar = ({ sidebar }) => {
         <NavLink
           to="/dashboard/my-submission"
           className={({ isActive }) =>
-            isActive ? "active dashLink" : "dashLink"
+            `${sidebar ? "" : isActive ? "active dashLink" : "dashLink"} `
           }
         >
           <div
@@ -165,7 +165,7 @@ const Sidebar = ({ sidebar }) => {
         <NavLink
           to="/dashboard/task-list"
           className={({ isActive }) =>
-            isActive ? "active dashLink" : "dashLink"
+            `${sidebar ? "" : isActive ? "active dashLink" : "dashLink"} `
           }
         >
           <div
@@ -182,7 +182,7 @@ const Sidebar = ({ sidebar }) => {
         <NavLink
           to="/dashboard/withdrawal"
           className={({ isActive }) =>
-            isActive ? "active dashLink" : "dashLink"
+            `${sidebar ? "" : isActive ? "active dashLink" : "dashLink"} `
           }
         >
           <div

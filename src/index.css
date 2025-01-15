@@ -31,6 +31,7 @@
 .dashLink {
   position: relative;
   text-decoration: none;
+  display: inline-block;
 }
 .dashLink::after {
   content: "";
@@ -43,5 +44,5 @@
   transition: width 0.5s ease-in;
 }
 .dashLink.active::after {
-  width: 70%;
+  width: 100%;
 }
