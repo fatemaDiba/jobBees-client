@@ -19,7 +19,7 @@ const Banner = () => {
         </p>
         <a
           href=""
-          className="btn text-black border-[#50ade9] bg-light-primary/70 pointer-events-auto hover:bg-blue-700 rounded-full"
+          className="btn text-white border-[#50ade9] bg-light-primary/70 pointer-events-auto hover:bg-blue-700"
         >
           Explore More
         </a>

@@ -1,16 +1,18 @@
 import { Link, useLocation, useNavigate } from "react-router-dom";
-// import { toast } from "react-toastify";
 import { FcGoogle } from "react-icons/fc";
 import useAuth from "../../hooks/useAuth";
 import Title from "../../components/Title";
 import { useState } from "react";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
+import useAxios from "../../hooks/useAxios";
+import Swal from "sweetalert2";
 
 const Login = () => {
   const [showPass, setShowPass] = useState(false);
-  const { oldUser, signInWithGoogle, setLoading } = useAuth();
+  const { oldUser, signInWithGoogle, setLoading, user } = useAuth();
   const navigate = useNavigate();
   const location = useLocation();
+  const axiosBase = useAxios();
 
   const handleShowPass = () => {
     setShowPass(!showPass);
@@ -21,28 +23,71 @@ const Login = () => {
     const form = e.target;
     const email = form.email.value;
     const password = form.password.value;
-    console.log(email, password);
+    // console.log(email, password);
 
     oldUser(email, password)
       .then((res) => {
         // console.log(res.user);
-        // toast.success("Successfully Logged in user");
+        Swal.fire({
+          position: "top-end",
+          icon: "success",
+          title: `Welcome Back ${user.displayname}`,
+          showConfirmButton: false,
+          timer: 1000,
+        });
         setLoading(false);
         navigate(location?.state ? location.state : "/");
       })
       .catch((error) => {
-        // toast.error("Something went wrong");
+        Swal.fire({
+          position: "top-end",
+          icon: "error",
+          title: "Something Went Wrong!",
+          showConfirmButton: false,
+          timer: 1000,
+        });
       });
   };
 
   const handleGoogleBtn = () => {
     signInWithGoogle()
       .then((res) => {
-        // toast.success("Successfully logged in user with google");
-        navigate(location?.state ? location.state : "/");
+        const email = res?.user?.email;
+        const displayName = res?.user?.displayName;
+
+        const userData = { email, displayName };
+
+        axiosBase.post("/user/add", userData).then((res) => {
+          if (res.data.acknowledged) {
+            Swal.fire({
+              position: "top-end",
+              icon: "success",
+              title: "Successfully created user",
+              showConfirmButton: false,
+              timer: 1000,
+            });
+            navigate(location?.state ? location.state : "/");
+          }
+          if (res.data.oldUser) {
+            Swal.fire({
+              position: "top-end",
+              icon: "success",
+              title: `Welcome Back ${user.displayname}`,
+              showConfirmButton: false,
+              timer: 1000,
+            });
+            navigate(location?.state ? location.state : "/");
+          }
+        });
       })
       .catch((error) => {
-        // toast.success("Something went wrong");
+        Swal.fire({
+          position: "top-end",
+          icon: "error",
+          title: "Something Went Wrong!",
+          showConfirmButton: false,
+          timer: 1000,
+        });
         setLoading(false);
       });
   };

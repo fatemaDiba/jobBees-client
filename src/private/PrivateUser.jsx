@@ -1,7 +1,8 @@
 import { Navigate, useLocation } from "react-router-dom";
-import Loading from "../../loading/Loading";
+import useAuth from "../hooks/useAuth";
+import Loading from "../loading/Loading";
 
-const PrivateRegLog = ({ children }) => {
+const PrivateUser = ({ children }) => {
   const { user, loading } = useAuth();
   const location = useLocation();
 
@@ -14,4 +15,4 @@ const PrivateRegLog = ({ children }) => {
   return <Navigate state={location.pathname} to="/"></Navigate>;
 };
 
-export default PrivateRegLog;
+export default PrivateUser;

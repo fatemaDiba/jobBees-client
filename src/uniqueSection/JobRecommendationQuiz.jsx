@@ -2,8 +2,8 @@ import Swal from "sweetalert2";
 
 const JobRecommendationQuiz = () => {
   const handleSubmit = (e) => {
-    e.preventDefault(); // Prevent page reload
-    const form = e.target; // Reference to the form element
+    e.preventDefault();
+    const form = e.target;
 
     const skill = form.elements.skills?.value?.toLowerCase() || "";
     const interest = form.elements.interests?.value?.toLowerCase() || "";

@@ -9,6 +9,7 @@ import About from "../footerRoutes/About";
 import Cookie from "../footerRoutes/Cookies";
 import PrivacyPolicy from "../footerRoutes/PrivacyPolicy";
 import TermsOfUse from "../footerRoutes/TermOfUse";
+import PrivateUser from "../private/PrivateUser";
 
 const router = createBrowserRouter([
   {
@@ -42,11 +43,19 @@ const router = createBrowserRouter([
       },
       {
         path: "/login",
-        element: <Login></Login>,
+        element: (
+          <PrivateUser>
+            <Login></Login>
+          </PrivateUser>
+        ),
       },
       {
         path: "/register",
-        element: <Register></Register>,
+        element: (
+          <PrivateUser>
+            <Register></Register>
+          </PrivateUser>
+        ),
       },
     ],
   },
