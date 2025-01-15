@@ -13,6 +13,13 @@ import PrivateUser from "../private/PrivateUser";
 import Dashboard from "../layout/Dashboard";
 import ManageTask from "../dashboard/AdminDashboard/manageTask/ManageTask";
 import ManageUser from "../dashboard/AdminDashboard/manageUser/ManageUser";
+import MyTask from "../dashboard/UserDashboard/myTasks/MyTask";
+import PaymentHistory from "../dashboard/UserDashboard/payment/PaymentHistory";
+import PurchaseCoin from "../dashboard/UserDashboard/purchase/PurchaseCoin";
+import MySubmission from "../dashboard/WorkerDashboard/submission/MySubmission";
+import TaskList from "../dashboard/WorkerDashboard/taskList/TaskList";
+import AddTask from "../dashboard/UserDashboard/addTask/AddTask";
+import Withdrawals from "../dashboard/WorkerDashboard/withdrawal/Withdrawals";
 
 const router = createBrowserRouter([
   {
@@ -67,6 +74,7 @@ const router = createBrowserRouter([
     element: <Dashboard></Dashboard>,
     errorElement: <Error></Error>,
     children: [
+      // admin route
       {
         path: "/dashboard/manage-task",
         element: <ManageTask></ManageTask>,
@@ -74,6 +82,36 @@ const router = createBrowserRouter([
       {
         path: "/dashboard/manage-user",
         element: <ManageUser></ManageUser>,
+      },
+      // user route
+      {
+        path: "/dashboard/add-task",
+        element: <AddTask></AddTask>,
+      },
+      {
+        path: "/dashboard/my-added-task",
+        element: <MyTask></MyTask>,
+      },
+      {
+        path: "/dashboard/payment-history",
+        element: <PaymentHistory></PaymentHistory>,
+      },
+      {
+        path: "/dashboard/purchase-coin",
+        element: <PurchaseCoin></PurchaseCoin>,
+      },
+      // worker route
+      {
+        path: "/dashboard/my-submission",
+        element: <MySubmission></MySubmission>,
+      },
+      {
+        path: "/dashboard/task-list",
+        element: <TaskList></TaskList>,
+      },
+      {
+        path: "/dashboard/withdrawal",
+        element: <Withdrawals></Withdrawals>,
       },
     ],
   },

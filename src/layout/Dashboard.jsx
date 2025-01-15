@@ -20,7 +20,7 @@ const Dashboard = () => {
             sidebar ? "w-[5%]" : "w-[20%]"
           }`}
         >
-          <Sidebar></Sidebar>
+          <Sidebar sidebar={sidebar}></Sidebar>
         </div>
         <div className="w-full">
           <Outlet></Outlet>
