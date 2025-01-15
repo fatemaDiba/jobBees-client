@@ -11,6 +11,8 @@ import PrivacyPolicy from "../footerRoutes/PrivacyPolicy";
 import TermsOfUse from "../footerRoutes/TermOfUse";
 import PrivateUser from "../private/PrivateUser";
 import Dashboard from "../layout/Dashboard";
+import ManageTask from "../dashboard/AdminDashboard/manageTask/ManageTask";
+import ManageUser from "../dashboard/AdminDashboard/manageUser/ManageUser";
 
 const router = createBrowserRouter([
   {
@@ -61,10 +63,19 @@ const router = createBrowserRouter([
     ],
   },
   {
-    path: "dashboard",
+    path: "/dashboard",
     element: <Dashboard></Dashboard>,
     errorElement: <Error></Error>,
-    children: [{}],
+    children: [
+      {
+        path: "/dashboard/manage-task",
+        element: <ManageTask></ManageTask>,
+      },
+      {
+        path: "/dashboard/manage-user",
+        element: <ManageUser></ManageUser>,
+      },
+    ],
   },
 ]);
 export default router;

@@ -1,11 +1,10 @@
-import { useContext } from "react";
 import { Link, NavLink, useNavigate } from "react-router-dom";
-import { AuthContext } from "../authProvider/AuthProvider";
 import { Tooltip } from "react-tooltip";
 import Swal from "sweetalert2";
+import useAuth from "../hooks/useAuth";
 
 const Header = () => {
-  const { user, logOutUser } = useContext(AuthContext);
+  const { user, logOutUser } = useAuth();
   const navigate = useNavigate();
 
   const handleLogOutBtn = (e) => {
