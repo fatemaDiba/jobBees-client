@@ -72,7 +72,7 @@ const Login = () => {
             Swal.fire({
               position: "top-end",
               icon: "success",
-              title: `Welcome Back ${user.displayname}`,
+              title: `Welcome Back ${displayName}`,
               showConfirmButton: false,
               timer: 1000,
             });

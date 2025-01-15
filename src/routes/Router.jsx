@@ -10,6 +10,7 @@ import Cookie from "../footerRoutes/Cookies";
 import PrivacyPolicy from "../footerRoutes/PrivacyPolicy";
 import TermsOfUse from "../footerRoutes/TermOfUse";
 import PrivateUser from "../private/PrivateUser";
+import Dashboard from "../layout/Dashboard";
 
 const router = createBrowserRouter([
   {
@@ -58,6 +59,12 @@ const router = createBrowserRouter([
         ),
       },
     ],
+  },
+  {
+    path: "dashboard",
+    element: <Dashboard></Dashboard>,
+    errorElement: <Error></Error>,
+    children: [{}],
   },
 ]);
 export default router;

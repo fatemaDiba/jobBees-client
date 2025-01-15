@@ -1,7 +1,8 @@
-import { useContext, useState } from "react";
+import { useContext } from "react";
 import { Link, NavLink, useNavigate } from "react-router-dom";
 import { AuthContext } from "../authProvider/AuthProvider";
 import { Tooltip } from "react-tooltip";
+import Swal from "sweetalert2";
 
 const Header = () => {
   const { user, logOutUser } = useContext(AuthContext);
@@ -11,11 +12,23 @@ const Header = () => {
     e.preventDefault();
     logOutUser()
       .then((res) => {
-        console.log("User Successfully Logged Out");
+        Swal.fire({
+          position: "top-end",
+          icon: "success",
+          title: "Successfully Logged Out User",
+          showConfirmButton: false,
+          timer: 1000,
+        });
         navigate("/");
       })
       .catch((error) => {
-        console.log(first)("Something went wrong!");
+        Swal.fire({
+          position: "top-end",
+          icon: "error",
+          title: "Something Went Wrong!",
+          showConfirmButton: false,
+          timer: 1000,
+        });
       });
   };
 
@@ -32,7 +45,7 @@ const Header = () => {
       <li>
         <Link
           to="https://github.com/Programming-Hero-Web-Course4/b10a12-client-side-fatemaDiba"
-          className="bg-light-primary/70 hover:bg-blue-700 text-sm px-4 py-2 rounded-md font-semibold dark:text-black"
+          className="bg-light-primary/70 hover:bg-blue-700 text-sm px-4 py-2 rounded-md font-semibold text-black"
         >
           Join as developer
         </Link>
@@ -68,20 +81,23 @@ const Header = () => {
               {navList}
             </ul>
           </div>
-          <a className="flex gap-3 items-center text-xl dark:text-white md:text-3xl font-bold">
+          <Link
+            to="/"
+            className="flex gap-3 items-center text-xl dark:text-white md:text-3xl font-bold"
+          >
             <img src="/assets/logo.png" alt="" className="w-12 md:w-14" />
             JobBees
-          </a>
+          </Link>
         </div>
 
-        <div>
-          <div className="hidden lg:flex mr-1 items-center">
-            <ul className="menu-horizontal items-center dark:text-white font-semibold px-1 gap-6 text-sm">
+        <div className="flex items-center">
+          <div className="hidden lg:flex">
+            <ul className="menu-horizontal items-center dark:text-white font-semibold px-2 gap-4 text-sm">
               {navList}
             </ul>
           </div>
           {user ? (
-            <div className="flex gap-4">
+            <div className="">
               <Tooltip
                 anchorSelect="#profile-pic"
                 place="bottom"
@@ -114,16 +130,16 @@ const Header = () => {
               </div>
             </div>
           ) : (
-            <div className="space-x-2">
+            <div className="flex items-center gap-2">
               <Link
                 to="/login"
-                className="bg-light-primary/70 hover:bg-blue-700 text-sm px-4 py-2 rounded-md font-semibold dark:text-black"
+                className="bg-light-primary/70 hover:bg-blue-700 text-sm px-4 py-2 rounded-md font-semibold text-black"
               >
                 LogIn
               </Link>
               <Link
                 to="/register"
-                className="bg-light-primary/70 hover:bg-blue-700 text-sm px-4 py-2 rounded-md font-semibold dark:text-black"
+                className="bg-light-primary/70 hover:bg-blue-700 text-sm px-4 py-2 rounded-md font-semibold text-black"
               >
                 Register
               </Link>

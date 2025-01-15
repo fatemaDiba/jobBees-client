@@ -1,5 +1,5 @@
 import { Link, useLocation, useNavigate } from "react-router-dom";
-// import { toast } from "react-toastify";
+import { toast } from "react-toastify";
 import { FcGoogle } from "react-icons/fc";
 import Lottie from "lottie-react";
 import register from "../../assets/register.json";
@@ -7,12 +7,15 @@ import useAuth from "../../hooks/useAuth";
 import Title from "../../components/Title";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
 import { useState } from "react";
+import useAxios from "../../hooks/useAxios";
+import Swal from "sweetalert2";
 
 const Register = () => {
   const [showPass, setShowPass] = useState(false);
-  const { newUser, signInWithGoogle, setLoading } = useAuth();
+  const { newUser, setLoading } = useAuth();
   const navigate = useNavigate();
   const location = useLocation();
+  const axiosBase = useAxios();
 
   const handleShowPass = () => {
     setShowPass(!showPass);
@@ -25,43 +28,64 @@ const Register = () => {
     const email = form.email.value;
     const password = form.password.value;
     const photoUrl = form.photo.value;
+    const role = form.role.value;
 
     const regex = /^(?=.*[a-z])(?=.*[A-Z]).{6,}$/;
     if (!password.match(regex)) {
-      toast.error("Please give A Valid Password ");
+      toast.error("Please give A Valid Password");
       return;
     }
+
     newUser(email, password)
       .then((res) => {
         // console.log(res.user);
         form.reset();
-        // toast.success("Successfully registered user");
-
         updateUser(name, photoUrl)
-          .then((res) => {})
+          .then((res) => {
+            // const email = res?.user?.email;
+            // const displayName = res?.user?.displayName;
+            // const newUserData = { email, displayName, role };
+            // axiosBase.post("/user/add", newUserData).then((res) => {
+            //   if (res.data.acknowledged) {
+            //     Swal.fire({
+            //       position: "top-end",
+            //       icon: "success",
+            //       title: "Successfully created user",
+            //       showConfirmButton: false,
+            //       timer: 1000,
+            //     });
+            //     navigate(location?.state ? location.state : "/");
+            //   }
+            //   if (res.data.oldUser) {
+            //     Swal.fire({
+            //       position: "top-end",
+            //       icon: "error",
+            //       title: "Already Existed User!",
+            //       showConfirmButton: false,
+            //       timer: 1000,
+            //     });
+            //     navigate(location?.state ? location.state : "/");
+            //   }
+            // });
+          })
           .catch((error) => {
-            // toast.error("Something went wrong");
+            toast.error("Something went wrong");
           });
 
         navigate(location?.state ? location.state : "/");
       })
       .catch((error) => {
-        // toast.error("Something went wrong");
+        Swal.fire({
+          position: "top-end",
+          icon: "error",
+          title: "Something Went Wrong!",
+          showConfirmButton: false,
+          timer: 1000,
+        });
         setLoading(false);
       });
   };
 
-  const handleGoogleBtn = () => {
-    signInWithGoogle()
-      .then((res) => {
-        // toast.success("Successfully registered with google");
-        navigate(location?.state ? location.state : "/");
-      })
-      .catch((error) => {
-        // toast.error("Something went wrong");
-        setLoading(false);
-      });
-  };
   return (
     <div>
       <Title title="Register"></Title>
@@ -102,12 +126,15 @@ const Register = () => {
                     <label className="label">
                       <span className="label-text">Role</span>
                     </label>
-                    <select className="select select-bordered w-full">
-                      <option disabled defaultValue>
+                    <select
+                      className="select select-bordered w-full"
+                      name="role"
+                    >
+                      <option disabled defaultValue value="">
                         Role
                       </option>
-                      <option>User</option>
-                      <option>Worker</option>
+                      <option value="user">User</option>
+                      <option value="worker">Worker</option>
                     </select>
                   </div>
                   <div className="form-control">

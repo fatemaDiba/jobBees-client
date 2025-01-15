@@ -27,5 +27,5 @@
 }
 
 .link.active::after {
-  width: 100%; /* Expand underline smoothly when the link is active */
+  width: 100%;
 }

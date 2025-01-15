@@ -49,7 +49,7 @@ const Testimonials = () => {
           modules={[Navigation, Pagination, Autoplay]}
           navigation
           pagination={{ clickable: true }}
-          autoplay={{ delay: 3000 }}
+          autoplay={{ delay: 2000 }}
           spaceBetween={30}
           slidesPerView={3}
           loop
