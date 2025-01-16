@@ -11,7 +11,7 @@ import useUser from "../../hooks/useUser";
 const DashHeader = ({ handleSidebar }) => {
   const { user, logOutUser } = useAuth();
   const navigate = useNavigate();
-  const userData = useUser();
+  const [userData] = useUser();
 
   const handleLogOutBtn = (e) => {
     e.preventDefault();
