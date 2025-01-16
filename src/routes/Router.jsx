@@ -20,6 +20,7 @@ import MySubmission from "../dashboard/WorkerDashboard/submission/MySubmission";
 import TaskList from "../dashboard/WorkerDashboard/taskList/TaskList";
 import AddTask from "../dashboard/UserDashboard/addTask/AddTask";
 import Withdrawals from "../dashboard/WorkerDashboard/withdrawal/Withdrawals";
+import AdminHome from "../dashboard/AdminDashboard/adminHome/AdminHome";
 
 const router = createBrowserRouter([
   {
@@ -75,6 +76,10 @@ const router = createBrowserRouter([
     errorElement: <Error></Error>,
     children: [
       // admin route
+      {
+        path: "/dashboard/admin-home",
+        element: <AdminHome></AdminHome>,
+      },
       {
         path: "/dashboard/manage-task",
         element: <ManageTask></ManageTask>,

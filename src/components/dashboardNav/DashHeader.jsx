@@ -91,6 +91,14 @@ const DashHeader = ({ handleSidebar }) => {
             </div>
           </div>
 
+          {/* notification */}
+          <button className="w-10 h-10 hover:bg-slate-400 rounded-full  flex items-center justify-center">
+            <div className="indicator">
+              <TbBellFilled className="text-2xl"></TbBellFilled>
+              {/* <span className="badge badge-xs badge-primary indicator-item"></span> */}
+            </div>
+          </button>
+
           {/* image */}
           <div className="">
             <Tooltip
@@ -121,14 +129,6 @@ const DashHeader = ({ handleSidebar }) => {
               </div>
             </div>
           </div>
-
-          {/* notification */}
-          <button className="w-10 h-10 hover:bg-slate-400 rounded-full  flex items-center justify-center">
-            <div className="indicator">
-              <TbBellFilled className="text-2xl"></TbBellFilled>
-              {/* <span className="badge badge-xs badge-primary indicator-item"></span> */}
-            </div>
-          </button>
         </div>
       </div>
     </div>

@@ -9,7 +9,9 @@ const Footer = () => {
       <div className="footer w-10/12 md:container xl:w-10/12 mx-auto py-10">
         <div className="self-center col-span-2 lg:col-span-1">
           <img src="/assets/logo.png" alt="" className="w-14 md:w-16" />
-          <h2 className="text-2xl md:text-4xl font-bold">JobBees</h2>
+          <h2 className="text-2xl md:text-4xl font-bold text-gray-900">
+            JobBees
+          </h2>
           <p className="text-black/80 font-medium">
             Providing reliable service since 2022
           </p>

@@ -32,6 +32,23 @@ const Sidebar = ({ sidebar }) => {
       {/* admin route */}
       <li>
         <NavLink
+          to="/dashboard/admin-home"
+          className={({ isActive }) =>
+            `${sidebar ? "" : isActive ? "active dashLink" : "dashLink"} `
+          }
+        >
+          <div
+            className={`flex items-center gap-2 ${
+              sidebar ? "justify-center" : "justify-start"
+            } `}
+          >
+            <IoHome />
+            <span className={`${sidebar ? "hidden" : "block"}`}>A_Home</span>
+          </div>
+        </NavLink>
+      </li>
+      <li>
+        <NavLink
           to="/dashboard/manage-task"
           className={({ isActive }) =>
             `${sidebar ? "" : isActive ? "active dashLink" : "dashLink"} `
