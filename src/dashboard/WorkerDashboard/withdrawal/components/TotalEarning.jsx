@@ -10,8 +10,8 @@ const TotalEarning = () => {
   const isEligibleForWithdrawal = user.coins >= minWithdrawCoins;
 
   return (
-    <div className="p-6 flex flex-col justify-center ">
-      <div className="w-full max-w-md bg-white rounded-lg shadow-lg border border-gray-200 p-6">
+    <div className="flex flex-col justify-center">
+      <div className="w-full max-w-md bg-white rounded-lg shadow-lg border border-gray-200 hover:shadow-2xl transition-shadow p-6">
         <h2 className="text-xl md:text-2xl xl:text-3xl font-bold text-gray-800 text-center mb-4">
           Your Total Earnings
         </h2>

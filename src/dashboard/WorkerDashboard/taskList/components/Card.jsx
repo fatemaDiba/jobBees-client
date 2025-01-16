@@ -27,7 +27,7 @@ const Card = () => {
   ];
 
   return (
-    <div className="p-6">
+    <div>
       <h2 className="text-xl md:text-2xl xl:text-3xl font-bold mb-6 text-gray-800">
         Available Tasks
       </h2>
@@ -37,7 +37,7 @@ const Card = () => {
             key={task.id}
             className="bg-white shadow-lg rounded-lg p-4 border border-gray-200 hover:shadow-2xl transition-shadow"
           >
-            <h3 className="text-xl font-bold text-gray-800 mb-2">
+            <h3 className="text-xl font-bold text-gray-800 mb-4">
               {task.taskTitle}
             </h3>
             <p className="text-sm text-gray-600 mb-1">

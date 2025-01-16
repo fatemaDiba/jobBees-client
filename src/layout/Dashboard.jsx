@@ -12,7 +12,7 @@ const Dashboard = () => {
   };
 
   return (
-    <div className="">
+    <div>
       <DashHeader handleSidebar={handleSidebar}></DashHeader>
       <div className="flex">
         <div

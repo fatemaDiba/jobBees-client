@@ -39,7 +39,7 @@ const DashHeader = ({ handleSidebar }) => {
 
   return (
     <div className="bg-light-secondary/90">
-      <Title title="DashBoard"></Title>
+      <Title title="Dashboard"></Title>
 
       <div className="navbar w-11/12 mx-auto">
         <div className="navbar-start ">

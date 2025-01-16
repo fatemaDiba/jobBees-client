@@ -41,7 +41,7 @@ const UserTable = () => {
                 </select>
               </td>
               <td className="px-4 py-3">$500</td>
-              <td className="px-4 py-3">
+              <td className="px-4 py-3 flex items-end">
                 <button className="flex items-center gap-2 bg-red-500 text-white px-3 py-1 rounded hover:bg-red-600 mr-2">
                   Remove <FaTrashCan></FaTrashCan>
                 </button>

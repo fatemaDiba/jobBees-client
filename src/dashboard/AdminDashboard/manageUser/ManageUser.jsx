@@ -3,7 +3,7 @@ import UserTable from "./UserTable";
 
 const ManageUser = () => {
   return (
-    <div className="pb-10 bg-gray-50">
+    <div className="pb-16 bg-gray-50">
       <Title title="Manage User"></Title>
       <div>
         <UserTable></UserTable>

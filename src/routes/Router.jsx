@@ -13,15 +13,16 @@ import PrivateUser from "../private/PrivateUser";
 import Dashboard from "../layout/Dashboard";
 import ManageTask from "../dashboard/AdminDashboard/manageTask/ManageTask";
 import ManageUser from "../dashboard/AdminDashboard/manageUser/ManageUser";
-import MyTask from "../dashboard/UserDashboard/myTasks/MyTask";
-import PaymentHistory from "../dashboard/UserDashboard/payment/PaymentHistory";
-import PurchaseCoin from "../dashboard/UserDashboard/purchase/PurchaseCoin";
 import MySubmission from "../dashboard/WorkerDashboard/submission/MySubmission";
 import TaskList from "../dashboard/WorkerDashboard/taskList/TaskList";
-import AddTask from "../dashboard/UserDashboard/addTask/AddTask";
 import Withdrawals from "../dashboard/WorkerDashboard/withdrawal/Withdrawals";
 import AdminHome from "../dashboard/AdminDashboard/adminHome/AdminHome";
 import WorkerHome from "../dashboard/WorkerDashboard/workerHome/WorkerHome";
+import BuyerHome from "../dashboard/BuyerDashboard/buyerHome/BuyerHome";
+import PaymentHistory from "../dashboard/BuyerDashboard/payment/PaymentHistory";
+import MyTask from "../dashboard/BuyerDashboard/myTasks/MyTask";
+import AddTask from "../dashboard/BuyerDashboard/addTask/AddTask";
+import PurchaseCoin from "../dashboard/BuyerDashboard/purchase/PurchaseCoin";
 
 const router = createBrowserRouter([
   {
@@ -90,6 +91,10 @@ const router = createBrowserRouter([
         element: <ManageUser></ManageUser>,
       },
       // user routes
+      {
+        path: "/dashboard/buyer-home",
+        element: <BuyerHome></BuyerHome>,
+      },
       {
         path: "/dashboard/add-task",
         element: <AddTask></AddTask>,

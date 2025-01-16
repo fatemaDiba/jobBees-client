@@ -8,7 +8,7 @@ const Footer = () => {
     <footer className="bg-base-200 py-10">
       <div className="footer w-10/12 md:container xl:w-10/12 mx-auto py-10">
         <div className="self-center col-span-2 lg:col-span-1">
-          <img src="/assets/logo.png" alt="" className="w-14 md:w-16" />
+          <img src="/assets/logo.png" alt="logo" className="w-14 md:w-16" />
           <h2 className="text-2xl md:text-4xl font-bold text-gray-900">
             JobBees
           </h2>
@@ -20,15 +20,15 @@ const Footer = () => {
           <h6 className="text-base md:text-lg text-black/80 uppercase font-bold">
             Services
           </h6>
-          <a className="link-hover text-black/80  hover:text-light-primary font-medium">
+          <p className="link-hover text-black/80  hover:text-light-primary font-medium">
             Branding
-          </a>
-          <a className="link-hover text-black/80 hover:text-light-primary font-medium">
+          </p>
+          <p className="link-hover text-black/80 hover:text-light-primary font-medium">
             Design
-          </a>
-          <a className="link-hover text-black/80 hover:text-light-primary font-medium">
+          </p>
+          <p className="link-hover text-black/80 hover:text-light-primary font-medium">
             Marketing
-          </a>
+          </p>
         </nav>
         <nav>
           <h6 className="text-base md:text-lg text-black/80 uppercase  font-bold">

@@ -37,14 +37,14 @@ const SubmissionTable = () => {
   };
 
   return (
-    <div className="p-6">
-      <h2 className="text=xl md:text-2xl xl:text-3xl font-bold mb-6 text-gray-800">
+    <div>
+      <h2 className="text-xl md:text-2xl xl:text-3xl font-bold mb-6 text-gray-800">
         My Submissions
       </h2>
       <div className="overflow-x-auto bg-white shadow-lg rounded-lg border border-gray-200">
         <table className="table-auto w-full text-left">
           <thead>
-            <tr className="bg-gray-50">
+            <tr className="bg-gray-200">
               <th className="px-4 py-2 text-gray-600 font-semibold">
                 Task Title
               </th>
