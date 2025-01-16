@@ -21,6 +21,7 @@ import TaskList from "../dashboard/WorkerDashboard/taskList/TaskList";
 import AddTask from "../dashboard/UserDashboard/addTask/AddTask";
 import Withdrawals from "../dashboard/WorkerDashboard/withdrawal/Withdrawals";
 import AdminHome from "../dashboard/AdminDashboard/adminHome/AdminHome";
+import WorkerHome from "../dashboard/WorkerDashboard/workerHome/WorkerHome";
 
 const router = createBrowserRouter([
   {
@@ -75,7 +76,7 @@ const router = createBrowserRouter([
     element: <Dashboard></Dashboard>,
     errorElement: <Error></Error>,
     children: [
-      // admin route
+      // admin routes
       {
         path: "/dashboard/admin-home",
         element: <AdminHome></AdminHome>,
@@ -88,7 +89,7 @@ const router = createBrowserRouter([
         path: "/dashboard/manage-user",
         element: <ManageUser></ManageUser>,
       },
-      // user route
+      // user routes
       {
         path: "/dashboard/add-task",
         element: <AddTask></AddTask>,
@@ -105,7 +106,11 @@ const router = createBrowserRouter([
         path: "/dashboard/purchase-coin",
         element: <PurchaseCoin></PurchaseCoin>,
       },
-      // worker route
+      // worker routes
+      {
+        path: "/dashboard/worker-home",
+        element: <WorkerHome></WorkerHome>,
+      },
       {
         path: "/dashboard/my-submission",
         element: <MySubmission></MySubmission>,

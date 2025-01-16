@@ -1,6 +1,6 @@
 const AdminDash = () => {
   return (
-    <div className="p-6 ">
+    <div className="p-6">
       <div className="w-11/12 md:container xl:w-10/12 mx-auto">
         <h2 className=" text-xl md:text-3xl font-bold mb-6 text-gray-800">
           Dashboard

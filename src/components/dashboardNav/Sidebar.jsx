@@ -161,6 +161,23 @@ const Sidebar = ({ sidebar }) => {
       {/* worker route */}
       <li>
         <NavLink
+          to="/dashboard/worker-home"
+          className={({ isActive }) =>
+            `${sidebar ? "" : isActive ? "active dashLink" : "dashLink"} `
+          }
+        >
+          <div
+            className={`flex items-center gap-2 ${
+              sidebar ? "justify-center" : "justify-start"
+            } `}
+          >
+            <IoHome />
+            <span className={`${sidebar ? "hidden" : "block"}`}>W_Home</span>
+          </div>
+        </NavLink>
+      </li>
+      <li>
+        <NavLink
           to="/dashboard/my-submission"
           className={({ isActive }) =>
             `${sidebar ? "" : isActive ? "active dashLink" : "dashLink"} `
