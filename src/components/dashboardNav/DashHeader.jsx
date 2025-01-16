@@ -6,10 +6,12 @@ import Swal from "sweetalert2";
 import { Link, useNavigate } from "react-router-dom";
 import { Tooltip } from "react-tooltip";
 import { PiCoinsFill } from "react-icons/pi";
+import useUser from "../../hooks/useUser";
 
 const DashHeader = ({ handleSidebar }) => {
   const { user, logOutUser } = useAuth();
   const navigate = useNavigate();
+  const userData = useUser();
 
   const handleLogOutBtn = (e) => {
     e.preventDefault();
@@ -62,7 +64,9 @@ const DashHeader = ({ handleSidebar }) => {
         <div className="navbar-end">
           {/* Coin */}
           <div className="px-2 md:px-3 py-2 flex items-center justify-center gap-1 rounded-lg hover:bg-blue-500 bg-light-accent">
-            <span className="font-bold text-sm md:text-base">10</span>
+            <span className="font-bold text-sm md:text-base">
+              {userData?.coin}
+            </span>
             <PiCoinsFill className="fill-yellow-500 font-bold text-xl md:text-2xl"></PiCoinsFill>
           </div>
 
@@ -74,7 +78,9 @@ const DashHeader = ({ handleSidebar }) => {
               className="!rounded-lg !bg-gray-700 !text-white"
               clickable
             >
-              <p className="p-2 font-bold text-md">User</p>
+              <p className="p-2 font-bold text-md uppercase">
+                {userData?.userType}
+              </p>
             </Tooltip>
             <div
               id="user-role"

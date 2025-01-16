@@ -133,9 +133,9 @@ const Login = () => {
                       className="absolute top-1/2 transform -translate-y-1/2 right-4 cursor-pointer"
                     >
                       {showPass ? (
-                        <FaEyeSlash className="text-lg text-black/80" />
-                      ) : (
                         <FaEye className="text-lg text-black/80" />
+                      ) : (
+                        <FaEyeSlash className="text-lg text-black/80" />
                       )}
                     </div>
                   </div>

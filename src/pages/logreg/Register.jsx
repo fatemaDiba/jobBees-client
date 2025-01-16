@@ -26,10 +26,8 @@ const Register = () => {
     formState: { errors },
   } = useForm();
 
-  // Toggle password visibility
   const handleShowPass = () => setShowPass(!showPass);
 
-  // Form submission handler
   const onSubmit = async (data) => {
     const { name, email, password, role } = data;
     const imgFile = data.photo[0];
@@ -40,25 +38,19 @@ const Register = () => {
     }
 
     try {
-      // Upload the image to imgBB
-      const formData = new FormData();
+      const formData = new FormData(); //img er jonno
       formData.append("image", imgFile);
-      const res = await axios.post(hostingAPI, formData);
+      const res = await axios.post(hostingAPI, formData); //fetch kore img antese
       const image = res?.data?.data?.display_url;
 
       if (image) {
-        // Create the new user with Firebase
         const userRes = await newUser(email, password);
-        console.log("User Created:", userRes.user);
-
-        // Update user profile with name and image
+        // console.log("User Created:", userRes.user);
         await updateUser(name, image);
-
-        // Send user data to the backend
         const userData = { email, displayName: name, role };
-        const dbRes = await axiosBase.post("/user/add", userData);
+        const res = await axiosBase.post("/user/add", userData);
 
-        if (dbRes.data.acknowledged) {
+        if (res.data.acknowledged) {
           Swal.fire({
             position: "top-end",
             icon: "success",
@@ -66,7 +58,7 @@ const Register = () => {
             showConfirmButton: false,
             timer: 1000,
           });
-          navigate(location?.state?.from || "/");
+          navigate(location?.state?.from || "/dashboard");
         }
       } else {
         toast.error("Failed to upload image. Try again.");
@@ -184,9 +176,9 @@ const Register = () => {
                         className="absolute top-1/2 transform -translate-y-1/2 right-4 cursor-pointer"
                       >
                         {showPass ? (
-                          <FaEyeSlash className="text-lg text-black/80" />
-                        ) : (
                           <FaEye className="text-lg text-black/80" />
+                        ) : (
+                          <FaEyeSlash className="text-lg text-black/80" />
                         )}
                       </div>
                     </div>
