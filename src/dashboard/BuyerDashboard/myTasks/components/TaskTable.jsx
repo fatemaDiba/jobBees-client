@@ -1,24 +1,9 @@
 import { FaTrashCan } from "react-icons/fa6";
 
-const TaskTable = () => {
-  const dummyTasks = [
-    {
-      id: "T001",
-      title: "Blog Writing",
-      detail: "Write a blog about climate change",
-      completionDate: "2025-02-15",
-      requiredWorkers: 50,
-      payableAmount: "$10",
-    },
-    {
-      id: "T002",
-      title: "App Testing",
-      detail: "Test the new mobile app and report bugs",
-      completionDate: "2025-02-10",
-      requiredWorkers: 30,
-      payableAmount: "$15",
-    },
-  ];
+const TaskTable = ({ myTasks }) => {
+  const handleDeleteBtn = (id) => {
+    axiosBase.delete("/task/my-task", { id }).then((res) => {});
+  };
 
   return (
     <div className="px-4 py-6">
@@ -39,34 +24,36 @@ const TaskTable = () => {
             </tr>
           </thead>
           <tbody>
-            {dummyTasks
-              .sort(
-                (a, b) =>
-                  new Date(b.completionDate) - new Date(a.completionDate)
-              )
-              .map((task, index) => (
+            {myTasks?.map((task, index) => {
+              return (
                 <tr
-                  key={task.id}
+                  key={task._id}
                   className={`${
                     index % 2 === 0 ? "bg-gray-100" : "bg-white"
                   } hover:bg-gray-200`}
                 >
-                  <td className="py-3 px-4">{task.id}</td>
+                  <td className="py-3 px-4">{index + 1}</td>
                   <td className="py-3 px-4">{task.title}</td>
-                  <td className="py-3 px-4">{task.detail}</td>
-                  <td className="py-3 px-4">{task.completionDate}</td>
-                  <td className="py-3 px-4">{task.requiredWorkers}</td>
-                  <td className="py-3 px-4">{task.payableAmount}</td>
+                  <td className="py-3 px-4">{task.task_details}</td>
+                  <td className="py-3 px-4">{task.completion_date}</td>
+                  <td className="py-3 px-4">{task.required_workers}</td>
+                  <td className="py-3 px-4">{task.payable_amount}</td>
                   <td className="py-3 px-4 flex justify-center items-center">
                     <button className="bg-green-500 text-white py-1 px-3 rounded hover:bg-green-600 mr-2">
                       Update
                     </button>
-                    <button className="flex items-center gap-2 bg-red-500 text-white py-1 px-3 rounded hover:bg-red-600">
+                    <button
+                      onClick={() => {
+                        handleDeleteBtn(task._id);
+                      }}
+                      className="flex items-center gap-2 bg-red-500 text-white py-1 px-3 rounded hover:bg-red-600"
+                    >
                       Delete <FaTrashCan />
                     </button>
                   </td>
                 </tr>
-              ))}
+              );
+            })}
           </tbody>
         </table>
       </div>
