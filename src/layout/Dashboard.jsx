@@ -13,16 +13,16 @@ const Dashboard = () => {
 
   return (
     <div>
-      <DashHeader handleSidebar={handleSidebar}></DashHeader>
       <div className="flex">
         <div
-          className={`min-h-full bg-slate-200 ${
-            sidebar ? "w-[5%]" : "w-[20%]"
-          }`}
+          className={`min-h-full bg-slate-200 transition-all duration-300 ${
+            sidebar ? "w-[15%] md:w-[7%]" : "w-[20%]"
+          } `}
         >
-          <Sidebar sidebar={sidebar}></Sidebar>
+          <Sidebar sidebar={sidebar} handleSidebar={handleSidebar}></Sidebar>
         </div>
-        <div className="w-full">
+        <div className="md:w-full">
+          <DashHeader></DashHeader>
           <Outlet></Outlet>
           <Footer></Footer>
         </div>

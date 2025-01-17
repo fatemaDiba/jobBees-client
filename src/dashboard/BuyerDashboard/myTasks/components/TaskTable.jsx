@@ -21,12 +21,12 @@ const TaskTable = () => {
   ];
 
   return (
-    <div className="">
-      <h2 className="text-2x xl:text-3xl font-bold text-gray-800 mb-5">
+    <div className="px-4 py-6">
+      <h2 className="text-2xl xl:text-3xl font-bold text-gray-800 mb-5">
         My Tasks List
       </h2>
       <div className="overflow-x-auto rounded-lg shadow-lg">
-        <table className="table-auto w-full bg-white border border-gray-200">
+        <table className="table table-auto w-full min-w-max bg-white border border-gray-200">
           <thead className="bg-blue-500 text-white">
             <tr>
               <th className="py-3 px-4 text-left">ID</th>
@@ -39,7 +39,6 @@ const TaskTable = () => {
             </tr>
           </thead>
           <tbody>
-            {/* backend a sort korbo */}
             {dummyTasks
               .sort(
                 (a, b) =>
@@ -63,7 +62,7 @@ const TaskTable = () => {
                       Update
                     </button>
                     <button className="flex items-center gap-2 bg-red-500 text-white py-1 px-3 rounded hover:bg-red-600">
-                      Delete <FaTrashCan></FaTrashCan>
+                      Delete <FaTrashCan />
                     </button>
                   </td>
                 </tr>

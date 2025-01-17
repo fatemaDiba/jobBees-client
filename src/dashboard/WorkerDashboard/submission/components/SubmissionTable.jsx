@@ -42,7 +42,7 @@ const SubmissionTable = () => {
         My Submissions
       </h2>
       <div className="overflow-x-auto bg-white shadow-lg rounded-lg border border-gray-200">
-        <table className="table-auto w-full text-left">
+        <table className="table-auto w-full text-left min-w-max">
           <thead>
             <tr className="bg-gray-200">
               <th className="px-4 py-2 text-gray-600 font-semibold">

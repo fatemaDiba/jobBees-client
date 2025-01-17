@@ -1,6 +1,6 @@
 import { NavLink } from "react-router-dom";
 import { IoHome } from "react-icons/io5";
-import { FaTasks } from "react-icons/fa";
+import { FaBars, FaTasks } from "react-icons/fa";
 import { FaUserCog } from "react-icons/fa";
 import { MdPayment } from "react-icons/md";
 import { HiClipboardDocumentList } from "react-icons/hi2";
@@ -9,9 +9,9 @@ import { BsCashCoin } from "react-icons/bs";
 import { FaList } from "react-icons/fa6";
 import { FaListCheck } from "react-icons/fa6";
 
-const Sidebar = ({ sidebar }) => {
+const Sidebar = ({ sidebar, handleSidebar }) => {
   const navList = (
-    <div className="list-none space-y-4 !text-black/90 !font-normal">
+    <div className="text-sm md:text-base list-none space-y-4 !text-black/90 !font-normal">
       <li>
         <NavLink
           to="/"
@@ -250,7 +250,21 @@ const Sidebar = ({ sidebar }) => {
       </li>
     </div>
   );
-  return <div className="w-[80%] mx-auto py-5">{navList}</div>;
+  return (
+    <div className="w-[80%] mx-auto py-5">
+      <div
+        className={`flex flex-col ${sidebar ? "items-center" : "items-start"}`}
+      >
+        <div
+          className="p-3 hover:bg-slate-400 rounded-xl mb-5 "
+          onClick={handleSidebar}
+        >
+          <FaBars className="text-xl md:text-2xl"></FaBars>
+        </div>
+        {navList}
+      </div>
+    </div>
+  );
 };
 
 export default Sidebar;

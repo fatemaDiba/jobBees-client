@@ -1,13 +1,13 @@
 const ApprovedSubmissions = () => {
   return (
     <div className="p-10">
-      <h2 className="text-xl md:text-2xl font-bold mb-6 text-gray-800">
+      <h2 className="text-2x xl:text-3xl font-bold mb-6 text-gray-800">
         Approved Submissions
       </h2>
 
-      <div className="overflow-x-auto shadow-lg ">
-        <table className="table-auto w-full bg-white rounded-lg overflow-hidden">
-          <thead className="bg-gray-200 text-gray-700">
+      <div className="overflow-x-auto shadow-lg rounded-lg">
+        <table className="table table-auto w-full bg-white">
+          <thead className="bg-gray-200 text-gray-700 text-sm md:text-base">
             <tr>
               <th className="px-4 py-2 text-left">Task Title</th>
               <th className="px-4 py-2 text-left">Payable Amount</th>

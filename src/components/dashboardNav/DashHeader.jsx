@@ -1,4 +1,4 @@
-import { FaBars, FaUser } from "react-icons/fa6";
+import { FaUser } from "react-icons/fa6";
 import { TbBellFilled } from "react-icons/tb";
 import Title from "../Title";
 import useAuth from "../../hooks/useAuth";
@@ -8,7 +8,7 @@ import { Tooltip } from "react-tooltip";
 import { PiCoinsFill } from "react-icons/pi";
 import useUser from "../../hooks/useUser";
 
-const DashHeader = ({ handleSidebar }) => {
+const DashHeader = () => {
   const { user, logOutUser } = useAuth();
   const navigate = useNavigate();
   const [userData] = useUser();
@@ -44,14 +44,6 @@ const DashHeader = ({ handleSidebar }) => {
       <div className="navbar w-11/12 mx-auto">
         <div className="navbar-start ">
           <div className="flex items-center gap-4">
-            <div
-              tabIndex={0}
-              role="button"
-              className="p-3 hover:bg-slate-400 rounded-xl"
-              onClick={handleSidebar}
-            >
-              <FaBars className="text-xl"></FaBars>
-            </div>
             <Link
               to="/"
               className="flex gap-3 items-center text-xl md:text-2xl xl:text-[28px] dark:text-white font-bold"

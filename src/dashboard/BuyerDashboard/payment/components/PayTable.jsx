@@ -24,12 +24,12 @@ const PayTable = () => {
   ];
 
   return (
-    <div className="">
-      <h2 className="text-2xl xl:text-3xl font-bold text-gray-800 mb-5 ">
+    <div className="px-4 py-6">
+      <h2 className="text-2xl xl:text-3xl font-bold text-gray-800 mb-5">
         Payment History
       </h2>
       <div className="overflow-x-auto bg-white shadow-md rounded-lg border border-gray-200">
-        <table className="table-auto w-full ">
+        <table className="table-auto w-full min-w-max">
           <thead className="bg-blue-500 text-white">
             <tr>
               <th className="py-3 px-4 text-left">Payment ID</th>
