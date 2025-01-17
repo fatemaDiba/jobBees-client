@@ -3,7 +3,7 @@ const AddTaskForm = ({ register, handleSubmit, errors, formRef }) => {
     <div className="flex items-center justify-center">
       <div className="bg-white shadow-lg rounded-lg w-full max-w-3xl p-8">
         <h2 className="text-2xl xl:text-3xl font-bold text-gray-800 text-center mb-6">
-          Add a New Task
+          Add A New Task
         </h2>
         <form ref={formRef} onSubmit={handleSubmit} className="space-y-6">
           {/* Task Title */}

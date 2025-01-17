@@ -22,13 +22,11 @@ const MyTask = () => {
     enabled: !!email,
   });
 
-  console.log(myTasks);
-
   return (
     <div className="bg-gray-50 p-10 pb-16">
       <Title title="My Tasks"></Title>
       <div>
-        <TaskTable myTasks={myTasks}></TaskTable>
+        <TaskTable myTasks={myTasks} refetch={refetch}></TaskTable>
       </div>
     </div>
   );

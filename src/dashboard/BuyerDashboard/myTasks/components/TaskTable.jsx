@@ -1,8 +1,42 @@
 import { FaTrashCan } from "react-icons/fa6";
+import useAxios from "../../../../hooks/useAxios";
+import { Link } from "react-router-dom";
+import Swal from "sweetalert2";
 
-const TaskTable = ({ myTasks }) => {
+const TaskTable = ({ myTasks, refetch }) => {
+  const axiosBase = useAxios();
+
   const handleDeleteBtn = (id) => {
-    axiosBase.delete("/task/my-task", { id }).then((res) => {});
+    Swal.fire({
+      title: "Are you sure?",
+      text: "You won't be able to revert this!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes, delete it!",
+    })
+      .then((result) => {
+        if (result.isConfirmed) {
+          axiosBase.delete(`/task/my-tasks/${id}`).then((res) => {
+            if (res.data.deletedCount) {
+              Swal.fire({
+                title: "Deleted!",
+                text: "Your file has been deleted.",
+                icon: "success",
+              });
+              refetch();
+            }
+          });
+        }
+      })
+      .catch((err) => {
+        Swal.fire({
+          title: "Error!",
+          text: "Something went wrong!",
+          icon: "error",
+        });
+      });
   };
 
   return (
@@ -11,7 +45,7 @@ const TaskTable = ({ myTasks }) => {
         My Tasks List
       </h2>
       <div className="overflow-x-auto rounded-lg shadow-lg">
-        <table className="table table-auto w-full min-w-max bg-white border border-gray-200">
+        <table className="table table-auto w-full min-w-[640px] bg-white border border-gray-200">
           <thead className="bg-blue-500 text-white">
             <tr>
               <th className="py-3 px-4 text-left">ID</th>
@@ -34,14 +68,17 @@ const TaskTable = ({ myTasks }) => {
                 >
                   <td className="py-3 px-4">{index + 1}</td>
                   <td className="py-3 px-4">{task.title}</td>
-                  <td className="py-3 px-4">{task.task_details}</td>
+                  <td className="py-3 px-4">{task.task_detail}</td>
                   <td className="py-3 px-4">{task.completion_date}</td>
                   <td className="py-3 px-4">{task.required_workers}</td>
                   <td className="py-3 px-4">{task.payable_amount}</td>
                   <td className="py-3 px-4 flex justify-center items-center">
-                    <button className="bg-green-500 text-white py-1 px-3 rounded hover:bg-green-600 mr-2">
+                    <Link
+                      to={`/dashboard/update-task/${task._id}`}
+                      className="bg-green-500 text-white py-1 px-3 rounded hover:bg-green-600 mr-2"
+                    >
                       Update
-                    </button>
+                    </Link>
                     <button
                       onClick={() => {
                         handleDeleteBtn(task._id);

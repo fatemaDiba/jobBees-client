@@ -23,6 +23,7 @@ import PaymentHistory from "../dashboard/BuyerDashboard/payment/PaymentHistory";
 import MyTask from "../dashboard/BuyerDashboard/myTasks/MyTask";
 import AddTask from "../dashboard/BuyerDashboard/addTask/AddTask";
 import PurchaseCoin from "../dashboard/BuyerDashboard/purchase/PurchaseCoin";
+import UpdateTask from "../dashboard/BuyerDashboard/myTasks/components/UpdateTask";
 
 const router = createBrowserRouter([
   {
@@ -90,7 +91,7 @@ const router = createBrowserRouter([
         path: "/dashboard/manage-user",
         element: <ManageUser></ManageUser>,
       },
-      // user routes
+      // buyer routes
       {
         path: "/dashboard/buyer-home",
         element: <BuyerHome></BuyerHome>,
@@ -102,6 +103,10 @@ const router = createBrowserRouter([
       {
         path: "/dashboard/my-added-task",
         element: <MyTask></MyTask>,
+      },
+      {
+        path: "/dashboard/update-task/:id",
+        element: <UpdateTask></UpdateTask>,
       },
       {
         path: "/dashboard/payment-history",
