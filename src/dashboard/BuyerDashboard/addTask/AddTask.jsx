@@ -20,6 +20,7 @@ const AddTask = () => {
   const axiosBase = useAxios();
   const formRef = useRef();
   const { user } = useAuth();
+  const buyerName = user?.displayName;
   const email = user?.email;
 
   // main onsubmit function
@@ -38,6 +39,7 @@ const AddTask = () => {
           ...data,
           photo: image,
           email: email,
+          buyerName: buyerName,
         });
 
         if (res.data.acknowledged) {

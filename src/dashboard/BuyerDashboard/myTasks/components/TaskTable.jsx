@@ -45,8 +45,8 @@ const TaskTable = ({ myTasks, refetch }) => {
         My Tasks List
       </h2>
       <div className="overflow-x-auto rounded-lg shadow-lg">
-        <table className="table table-auto w-full min-w-[640px] bg-white border border-gray-200">
-          <thead className="bg-blue-500 text-white">
+        <table className="table table-auto w-full min-w-max bg-white border border-gray-200">
+          <thead className="bg-blue-500 text-white text-sm md:text-base">
             <tr>
               <th className="py-3 px-4 text-left">ID</th>
               <th className="py-3 px-4 text-left">Title</th>
@@ -72,21 +72,23 @@ const TaskTable = ({ myTasks, refetch }) => {
                   <td className="py-3 px-4">{task.completion_date}</td>
                   <td className="py-3 px-4">{task.required_workers}</td>
                   <td className="py-3 px-4">{task.payable_amount}</td>
-                  <td className="py-3 px-4 flex justify-center items-center">
-                    <Link
-                      to={`/dashboard/update-task/${task._id}`}
-                      className="bg-green-500 text-white py-1 px-3 rounded hover:bg-green-600 mr-2"
-                    >
-                      Update
-                    </Link>
-                    <button
-                      onClick={() => {
-                        handleDeleteBtn(task._id);
-                      }}
-                      className="flex items-center gap-2 bg-red-500 text-white py-1 px-3 rounded hover:bg-red-600"
-                    >
-                      Delete <FaTrashCan />
-                    </button>
+                  <td className="py-3 px-4 ">
+                    <div className="flex flex-col md:flex-row justify-center items-center">
+                      <Link
+                        to={`/dashboard/update-task/${task._id}`}
+                        className="bg-green-500 text-white py-1 px-3 rounded hover:bg-green-600 mr-2"
+                      >
+                        Update
+                      </Link>
+                      <button
+                        onClick={() => {
+                          handleDeleteBtn(task._id);
+                        }}
+                        className="flex items-center gap-2 bg-red-500 text-white py-1 px-3 rounded hover:bg-red-600"
+                      >
+                        Delete <FaTrashCan />
+                      </button>
+                    </div>
                   </td>
                 </tr>
               );

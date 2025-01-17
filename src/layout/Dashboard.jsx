@@ -1,10 +1,16 @@
-import { Outlet } from "react-router-dom";
+import { Outlet, useLocation } from "react-router-dom";
 import Footer from "../components/Footer";
 import DashHeader from "../components/dashboardNav/DashHeader";
 import Sidebar from "../components/dashboardNav/Sidebar";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 const Dashboard = () => {
+  const { pathname } = useLocation();
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [pathname]);
+
   const [sidebar, setSidebar] = useState(false);
 
   const handleSidebar = () => {
@@ -21,7 +27,7 @@ const Dashboard = () => {
         >
           <Sidebar sidebar={sidebar} handleSidebar={handleSidebar}></Sidebar>
         </div>
-        <div className="md:w-full">
+        <div className="w-full overflow-hidden">
           <DashHeader></DashHeader>
           <Outlet></Outlet>
           <Footer></Footer>

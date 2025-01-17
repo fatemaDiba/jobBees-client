@@ -1,7 +1,7 @@
 const AddTaskForm = ({ register, handleSubmit, errors, formRef }) => {
   return (
     <div className="flex items-center justify-center">
-      <div className="bg-white shadow-lg rounded-lg w-full max-w-3xl p-8">
+      <div className="bg-white shadow-xl rounded-lg w-full max-w-3xl p-8">
         <h2 className="text-2xl xl:text-3xl font-bold text-gray-800 text-center mb-6">
           Add A New Task
         </h2>
