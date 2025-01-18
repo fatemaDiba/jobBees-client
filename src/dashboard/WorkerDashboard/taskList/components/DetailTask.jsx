@@ -18,7 +18,7 @@ const DetailTask = () => {
 
   return (
     <div className="bg-gray-50 py-16">
-      <h2 className="text-2xl xl:text-3xl font-bold text-gray-800 text-center">
+      <h2 className="w-9/12 md:w-11/12 mx-auto text-2xl xl:text-3xl font-bold text-gray-800 mb-4 text-center">
         Task Details
       </h2>
       <div>
