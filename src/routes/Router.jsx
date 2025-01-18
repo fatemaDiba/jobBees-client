@@ -24,6 +24,7 @@ import MyTask from "../dashboard/BuyerDashboard/myTasks/MyTask";
 import AddTask from "../dashboard/BuyerDashboard/addTask/AddTask";
 import PurchaseCoin from "../dashboard/BuyerDashboard/purchase/PurchaseCoin";
 import UpdateTask from "../dashboard/BuyerDashboard/myTasks/components/UpdateTask";
+import DetailTask from "../dashboard/WorkerDashboard/taskList/components/DetailTask";
 
 const router = createBrowserRouter([
   {
@@ -128,6 +129,10 @@ const router = createBrowserRouter([
       {
         path: "/dashboard/task-list",
         element: <TaskList></TaskList>,
+      },
+      {
+        path: "/dashboard/task-details/:id",
+        element: <DetailTask></DetailTask>,
       },
       {
         path: "/dashboard/withdrawal",

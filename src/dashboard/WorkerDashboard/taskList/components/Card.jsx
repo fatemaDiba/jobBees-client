@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom";
+
 const Card = ({ task }) => {
   return (
     <div className="bg-white shadow-lg rounded-lg p-4 border border-gray-200 hover:shadow-2xl transition-shadow flex flex-col">
@@ -23,9 +25,12 @@ const Card = ({ task }) => {
           <strong>Required Workers:</strong> {task.required_workers}
         </p>
       </div>
-      <button className="mt-auto bg-blue-500 text-white px-4 py-2 rounded-lg font-semibold hover:bg-blue-600 transition-colors">
+      <Link
+        to={`/dashboard/task-details/${task._id}`}
+        className="mt-auto bg-blue-500 text-white px-4 py-2 rounded-lg font-semibold hover:bg-blue-600 transition-colors text-center"
+      >
         View Details
-      </button>
+      </Link>
     </div>
   );
 };

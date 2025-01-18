@@ -27,14 +27,14 @@ const UpdateTask = () => {
   });
 
   useEffect(() => {
-    if (refData) {
+    if (refData && Object.keys(refData).length > 0) {
       reset({
         title: refData.title || "",
         task_detail: refData.task_detail || "",
         submission_info: refData.submission_info || "",
       });
     }
-  }, [refData]);
+  }, [refData, reset]);
 
   const onSubmit = (data) => {
     axiosBase
