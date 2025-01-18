@@ -1,13 +1,6 @@
-const TotalEarning = () => {
-  const user = {
-    coins: 300, // Example coin
-  };
-
+const TotalEarning = ({ coin }) => {
   const coinsToDollarRate = 20; // 20 coins = 1 dollar
-  const minWithdrawCoins = 200; // Minimum coins for withdrawal = 10$
-
-  const withdrawalAmount = (user.coins / coinsToDollarRate).toFixed(2);
-  const isEligibleForWithdrawal = user.coins >= minWithdrawCoins;
+  const withdrawalAmount = (coin / coinsToDollarRate).toFixed(2);
 
   return (
     <div className="flex flex-col justify-center">
@@ -21,7 +14,7 @@ const TotalEarning = () => {
               Total Coins:
             </span>
             <span className="text-blue-600 font-bold text-lg md:text-xl">
-              {user.coins} Coins
+              {coin} Coins
             </span>
           </div>
           <div className="flex justify-between items-center bg-green-50 p-4 rounded-md">
@@ -33,17 +26,6 @@ const TotalEarning = () => {
             </span>
           </div>
         </div>
-        {/* <div className="mt-6 text-center">
-          {isEligibleForWithdrawal ? (
-            <button className="px-6 py-2 bg-blue-600 text-white rounded-md font-semibold shadow-md hover:bg-blue-700 transition duration-200">
-              Request Withdrawal
-            </button>
-          ) : (
-            <p className="text-red-600 font-semibold">
-              You need at least {minWithdrawCoins} coins to withdraw.
-            </p>
-          )}
-        </div> */}
       </div>
     </div>
   );

@@ -1,4 +1,5 @@
 import Title from "../../../components/Title";
+import useAuth from "../../../hooks/useAuth";
 import useAxios from "../../../hooks/useAxios";
 import Loading from "../../../loading/Loading";
 import Card from "./components/Card";
@@ -6,12 +7,14 @@ import { useQuery } from "@tanstack/react-query";
 
 const TaskList = () => {
   const axiosBase = useAxios();
+  const { user, setLoading } = useAuth();
   const { data: allTasks = [], isLoading } = useQuery({
     queryKey: ["allTasks"],
     queryFn: async () => {
       const res = await axiosBase.get("/task/all-tasks");
       return res.data;
     },
+    enabled: !!user?.email,
   });
 
   return (
