@@ -13,7 +13,6 @@ const TaskList = () => {
       return res.data;
     },
   });
-  // console.log(allTasks);
 
   return (
     <div className="bg-gray-50 pb-16 p-10">

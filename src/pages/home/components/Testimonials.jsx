@@ -41,7 +41,7 @@ const Testimonials = () => {
 
   return (
     <div className="py-16 bg-gray-100">
-      <div className="container mx-auto text-center">
+      <div className="w-11/12 md:w-container xl:w-10/12  mx-auto text-center">
         <h2 className="text-2xl md:text-3xl xl:text-4xl font-bold text-primary-new mb-6">
           What People Are Saying
         </h2>
@@ -53,7 +53,7 @@ const Testimonials = () => {
           spaceBetween={30}
           slidesPerView={3}
           loop
-          className="w-11/12 md:w-container xl:w-10/12 mx-auto"
+          className=""
           breakpoints={{
             0: { slidesPerView: 1, spaceBetween: 10 },
             640: { slidesPerView: 2, spaceBetween: 20 },

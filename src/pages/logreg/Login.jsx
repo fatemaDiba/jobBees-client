@@ -23,7 +23,6 @@ const Login = () => {
     const form = e.target;
     const email = form.email.value;
     const password = form.password.value;
-    // console.log(email, password);
 
     oldUser(email, password)
       .then((res) => {
@@ -46,6 +45,7 @@ const Login = () => {
           showConfirmButton: false,
           timer: 1000,
         });
+        setLoading(false);
       });
   };
 
@@ -54,8 +54,8 @@ const Login = () => {
       .then((res) => {
         const email = res?.user?.email;
         const displayName = res?.user?.displayName;
-
-        const userData = { email, displayName };
+        const photo = res?.user?.photoURL;
+        const userData = { email, displayName, photo };
 
         axiosBase.post("/user/add", userData).then((res) => {
           if (res.data.acknowledged) {
@@ -66,7 +66,7 @@ const Login = () => {
               showConfirmButton: false,
               timer: 1000,
             });
-            navigate(location?.state ? location.state : "/");
+            navigate(location?.state ? location.state : "/dashboard");
           }
           if (res.data.oldUser) {
             Swal.fire({
@@ -76,7 +76,7 @@ const Login = () => {
               showConfirmButton: false,
               timer: 1000,
             });
-            navigate(location?.state ? location.state : "/");
+            navigate(location?.state ? location.state : "/dashboard");
           }
         });
       })

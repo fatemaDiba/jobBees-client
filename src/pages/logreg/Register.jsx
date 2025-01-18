@@ -47,7 +47,9 @@ const Register = () => {
         const userRes = await newUser(email, password);
         // console.log("User Created:", userRes.user);
         await updateUser(name, image);
-        const userData = { email, displayName: name, role };
+
+        const userData = { email, displayName: name, role, photo: image };
+        console.log(userData);
         const res = await axiosBase.post("/user/add", userData);
 
         if (res.data.acknowledged) {
@@ -142,7 +144,7 @@ const Register = () => {
                       <option disabled value="">
                         Select Role
                       </option>
-                      <option value="user">User</option>
+                      <option value="buyer">Buyer</option>
                       <option value="worker">Worker</option>
                     </select>
                     {errors.role && (
