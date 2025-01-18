@@ -7,6 +7,7 @@ import { toast } from "react-toastify";
 import axios from "axios";
 import Swal from "sweetalert2";
 import useAuth from "../../../hooks/useAuth";
+import { useNavigate } from "react-router-dom";
 
 const imgBB_key = import.meta.env.VITE_IMG_API_key;
 const hostingAPI = `https://api.imgbb.com/1/upload?key=${imgBB_key}`;
@@ -22,6 +23,7 @@ const AddTask = () => {
   const { user } = useAuth();
   const buyerName = user?.displayName;
   const email = user?.email;
+  const navigate = useNavigate();
 
   // main onsubmit function
   const onSubmit = async (data) => {
@@ -52,7 +54,7 @@ const AddTask = () => {
           });
           formRef.current.reset();
         }
-        // navigate(location?.state?.from || "/dashboard");
+        navigate(location?.state?.from || "/dashboard/my-added-task");
       } else {
         toast.error("Failed to upload image. Try again.");
       }

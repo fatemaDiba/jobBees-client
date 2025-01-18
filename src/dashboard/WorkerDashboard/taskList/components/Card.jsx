@@ -1,7 +1,7 @@
 const Card = ({ task }) => {
   return (
     <div className="bg-white shadow-lg rounded-lg p-4 border border-gray-200 hover:shadow-2xl transition-shadow flex flex-col">
-      <div className="pt-4 w-64 h-64 mx-auto mb-4">
+      <div className="w-72 h-36 mx-auto mb-4">
         <img
           src={task.photo}
           alt="task_img"
