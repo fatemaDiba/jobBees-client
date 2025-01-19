@@ -7,7 +7,11 @@ import Loading from "../../../loading/Loading";
 
 const BuyerHome = () => {
   const axiosBase = useAxios();
-  const { data: allSubmissions = [], isLoading } = useQuery({
+  const {
+    data: allSubmissions = [],
+    isLoading,
+    refetch,
+  } = useQuery({
     queryKey: ["allSubmissions"],
     queryFn: async () => {
       const res = await axiosBase.get("/submission/all-submissions");
@@ -21,7 +25,10 @@ const BuyerHome = () => {
       <div>
         <BuyerDash></BuyerDash>
         {isLoading && <Loading></Loading>}
-        <ReviewTasks allSubmissions={allSubmissions}></ReviewTasks>
+        <ReviewTasks
+          allSubmissions={allSubmissions}
+          refetch={refetch}
+        ></ReviewTasks>
       </div>
     </div>
   );

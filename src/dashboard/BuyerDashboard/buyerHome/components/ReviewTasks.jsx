@@ -1,19 +1,67 @@
+import { useState } from "react";
 import useAxios from "../../../../hooks/useAxios";
+import Swal from "sweetalert2";
 
-const ReviewTasks = ({ allSubmissions }) => {
-  //   const [showModal, setShowModal] = useState(false);
-  //   const [selectedSubmission, setSelectedSubmission] = useState(null);
-  //   const openModal = (submission) => {
-  //     setSelectedSubmission(submission);
-  //     setShowModal(true);
-  //   };
-  //   const closeModal = () => {
-  //     setShowModal(false);
-  //     setSelectedSubmission(null);
-  //   };
+const ReviewTasks = ({ allSubmissions, refetch }) => {
   const axiosBase = useAxios();
-  const handleReject = () => {
-    axiosBase.patch("/submission/all-submissions").then((res) => {});
+  const [showModal, setShowModal] = useState(false);
+  const [selectedSubmission, setSelectedSubmission] = useState(null);
+
+  const openModal = (submission) => {
+    setSelectedSubmission(submission);
+    setShowModal(true);
+  };
+  const closeModal = () => {
+    setShowModal(false);
+    setSelectedSubmission(null);
+  };
+
+  const handleApprove = (id) => {
+    axiosBase
+      .patch(`/submission/all-submissions/approve/${id}`)
+      .then((res) => {
+        if (res.data.submissionUpdate) {
+          Swal.fire({
+            title: "Approved!",
+            text: "Submission has been Approved.",
+            icon: "success",
+            timer: 1500,
+          });
+          refetch();
+        }
+      })
+      .catch((err) => {
+        Swal.fire({
+          title: "Error!",
+          text: "Something went wrong!",
+          icon: "error",
+          timer: 1000,
+        });
+      });
+  };
+
+  const handleReject = (id) => {
+    axiosBase
+      .patch(`/submission/all-submissions/${id}`)
+      .then((res) => {
+        if (res.data.submissionUpdate) {
+          Swal.fire({
+            title: "Rejected!",
+            text: "Submission has been Rejected.",
+            icon: "success",
+            timer: 1500,
+          });
+          refetch();
+        }
+      })
+      .catch((err) => {
+        Swal.fire({
+          title: "Error!",
+          text: "Something went wrong!",
+          icon: "error",
+          timer: 1000,
+        });
+      });
   };
 
   return (
@@ -38,7 +86,7 @@ const ReviewTasks = ({ allSubmissions }) => {
             </tr>
           </thead>
           <tbody>
-            {allSubmissions?.map((submission, index) => (
+            {allSubmissions?.map((submission) => (
               <tr
                 key={submission._id}
                 className=" hover:bg-gray-50 text-xs md:text-sm"
@@ -55,17 +103,22 @@ const ReviewTasks = ({ allSubmissions }) => {
                 <td className="py-2 md:py-3 px-2 md:px-4 text-center">
                   <div className="flex flex-col md:flex-row justify-center gap-2">
                     <button
-                      // onClick={() => openModal(submission)}
+                      onClick={() => openModal(submission)}
                       className="bg-blue-500 text-white py-1 px-3 rounded hover:bg-blue-600 mr-2"
                     >
                       View Submission
                     </button>
-                    <button className="bg-green-500 text-white py-1 px-3 rounded hover:bg-green-600 mr-2">
+                    <button
+                      onClick={() => {
+                        handleApprove(submission?._id);
+                      }}
+                      className="bg-green-500 text-white py-1 px-3 rounded hover:bg-green-600 mr-2"
+                    >
                       Approve
                     </button>
                     <button
                       onClick={() => {
-                        handleReject(submission._id);
+                        handleReject(submission?._id);
                       }}
                       className="bg-red-500 text-white py-1 px-3 rounded hover:bg-red-600 mr-2 md:mr-0 "
                     >
@@ -78,7 +131,7 @@ const ReviewTasks = ({ allSubmissions }) => {
           </tbody>
         </table>
       </div>
-      {/* 
+
       {showModal && (
         <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50">
           <div className="bg-white rounded-lg shadow-lg w-96 p-6">
@@ -86,19 +139,19 @@ const ReviewTasks = ({ allSubmissions }) => {
               Submission Detail
             </h3>
             <p className="text-gray-700 mb-6">
-              {selectedSubmission?.submissionDetail}
+              {selectedSubmission?.submissionDetails}
             </p>
             <div className="flex justify-end">
               <button
                 onClick={closeModal}
-                className="bg-gray-500 text-white py-1 px-3 rounded hover:bg-gray-600"
+                className="bg-blue-500 text-white py-1 px-3 rounded hover:bg-blue-600"
               >
                 Close
               </button>
             </div>
           </div>
         </div>
-      )} */}
+      )}
     </div>
   );
 };
