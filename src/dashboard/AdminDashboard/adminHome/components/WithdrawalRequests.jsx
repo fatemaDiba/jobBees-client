@@ -20,10 +20,10 @@ const WithdrawalRequests = () => {
     axiosBase
       .patch(`/withdraw/all-withdraws/${id}`)
       .then((res) => {
-        if (res.data.modifiedCount) {
+        if (res.data.withdrawal) {
           Swal.fire({
-            title: "Updated!",
-            text: "User Role has been Updated.",
+            title: "Approved!",
+            text: "Payment has been Successful.",
             icon: "success",
             timer: 1000,
           });
@@ -56,10 +56,13 @@ const WithdrawalRequests = () => {
               <th className="p-2 md:p-4 border">Action</th>
             </tr>
           </thead>
-          {allWithdraw?.map((withdraw) => {
-            return (
-              <tbody>
-                <tr className="text-gray-800 text-xs md:text-sm">
+          <tbody>
+            {allWithdraw?.map((withdraw) => {
+              return (
+                <tr
+                  key={withdraw._id}
+                  className="text-gray-800 text-xs md:text-sm"
+                >
                   <td className="p-2 md:p-4 border truncate">
                     {withdraw?.worker_email}
                   </td>
@@ -86,9 +89,9 @@ const WithdrawalRequests = () => {
                     </button>
                   </td>
                 </tr>
-              </tbody>
-            );
-          })}
+              );
+            })}
+          </tbody>
         </table>
       </div>
     </div>

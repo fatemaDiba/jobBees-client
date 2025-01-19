@@ -17,7 +17,7 @@ const WithdrawForm = ({ coin, email, displayName }) => {
 
   const onSubmit = async (data) => {
     const { coinToWithdraw, withdrawAmount, paymentSystem } = data;
-    const withdrawal_date = new Date().toISOString();
+    const withdrawal_date = new Date().toISOString().slice(0, 10);
     const withdrawData = {
       worker_email: email,
       worker_name: displayName,

@@ -1,4 +1,6 @@
-const AdminDash = ({ totalWorkers, totalBuyers }) => {
+const AdminDash = ({ allUsers }) => {
+  const { totalBuyer, totalWorker, totalCoins } = allUsers;
+
   return (
     <div className="p-4 md:p-6 lg:p-10">
       <h2 className="text-lg md:text-2xl lg:text-3xl font-bold mb-4 md:mb-6 text-gray-800">
@@ -12,7 +14,7 @@ const AdminDash = ({ totalWorkers, totalBuyers }) => {
             Total Workers
           </h3>
           <p className="text-lg md:text-xl xl:text-2xl font-semibold text-blue-500 mt-2 md:mt-4">
-            {totalWorkers}
+            {totalWorker}
           </p>
         </div>
         {/* Total Buyers */}
@@ -21,7 +23,7 @@ const AdminDash = ({ totalWorkers, totalBuyers }) => {
             Total Buyers
           </h3>
           <p className="text-lg md:text-xl xl:text-2xl font-semibold text-green-500 mt-2 md:mt-4">
-            {totalBuyers}
+            {totalBuyer}
           </p>
         </div>
         {/* Total Coins */}
@@ -30,7 +32,7 @@ const AdminDash = ({ totalWorkers, totalBuyers }) => {
             Total Available Coins
           </h3>
           <p className="text-lg md:text-xl xl:text-2xl font-semibold text-yellow-500 mt-2 md:mt-4">
-            12,345
+            {totalCoins}
           </p>
         </div>
         {/* Total Payments */}

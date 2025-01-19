@@ -1,23 +1,8 @@
-const ReviewTasks = () => {
+import useAxios from "../../../../hooks/useAxios";
+
+const ReviewTasks = ({ allSubmissions }) => {
   //   const [showModal, setShowModal] = useState(false);
   //   const [selectedSubmission, setSelectedSubmission] = useState(null);
-
-  const dummySubmissions = [
-    {
-      id: "S001",
-      workerName: "John Doe",
-      taskTitle: "Survey Participation",
-      payableAmount: "5",
-      submissionDetail: "Survey screenshot uploaded.",
-    },
-    {
-      id: "S002",
-      workerName: "Jane Smith",
-      taskTitle: "App Testing",
-      payableAmount: "10",
-      submissionDetail: "Bug report document uploaded.",
-    },
-  ];
   //   const openModal = (submission) => {
   //     setSelectedSubmission(submission);
   //     setShowModal(true);
@@ -26,6 +11,10 @@ const ReviewTasks = () => {
   //     setShowModal(false);
   //     setSelectedSubmission(null);
   //   };
+  const axiosBase = useAxios();
+  const handleReject = () => {
+    axiosBase.patch("/submission/all-submissions").then((res) => {});
+  };
 
   return (
     <div className="">
@@ -33,37 +22,35 @@ const ReviewTasks = () => {
         Review Submissions
       </h2>
       <div className="overflow-x-auto shadow-lg rounded-lg">
-        <table className="table-auto w-full bg-white  border border-gray-200 min-w-full">
+        <table className="table-auto w-full bg-white  border border-gray-200 min-w-max">
           <thead className="bg-gray-200">
             <tr className=" text-gray-700 text-xs md:text-sm">
-              <th className="py-2 md:py-3 px-2 md:px-4 text-left min-w-[150px]">
+              <th className="py-2 md:py-3 px-2 md:px-4 text-left">
                 Worker Name
               </th>
-              <th className="py-2 md:py-3 px-2 md:px-4 text-left min-w-[200px]">
+              <th className="py-2 md:py-3 px-2 md:px-4 text-left">
                 Task Title
               </th>
-              <th className="py-2 md:py-3 px-2 md:px-4 text-left min-w-[150px]">
+              <th className="py-2 md:py-3 px-2 md:px-4 text-left">
                 Payable Amount
               </th>
-              <th className="py-2 md:py-3 px-2 md:px-4 text-center min-w-[200px]">
-                Actions
-              </th>
+              <th className="py-2 md:py-3 px-2 md:px-4 text-center">Actions</th>
             </tr>
           </thead>
           <tbody>
-            {dummySubmissions.map((submission, index) => (
+            {allSubmissions?.map((submission, index) => (
               <tr
-                key={submission.id}
+                key={submission._id}
                 className=" hover:bg-gray-50 text-xs md:text-sm"
               >
                 <td className="py-2 md:py-3 px-2 md:px-4">
                   {submission.workerName}
                 </td>
                 <td className="py-2 md:py-3 px-2 md:px-4">
-                  {submission.taskTitle}
+                  {submission.task_title}
                 </td>
                 <td className="py-2 md:py-3 px-2 md:px-4">
-                  ${submission.payableAmount}
+                  ${submission.payable_amount}
                 </td>
                 <td className="py-2 md:py-3 px-2 md:px-4 text-center">
                   <div className="flex flex-col md:flex-row justify-center gap-2">
@@ -76,7 +63,12 @@ const ReviewTasks = () => {
                     <button className="bg-green-500 text-white py-1 px-3 rounded hover:bg-green-600 mr-2">
                       Approve
                     </button>
-                    <button className="bg-red-500 text-white py-1 px-3 rounded hover:bg-red-600 mr-2 md:mr-0 ">
+                    <button
+                      onClick={() => {
+                        handleReject(submission._id);
+                      }}
+                      className="bg-red-500 text-white py-1 px-3 rounded hover:bg-red-600 mr-2 md:mr-0 "
+                    >
                       Reject
                     </button>
                   </div>

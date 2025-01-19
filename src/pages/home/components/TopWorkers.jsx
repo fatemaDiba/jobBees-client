@@ -2,8 +2,10 @@ import { useQuery } from "@tanstack/react-query";
 import useAxios from "../../../hooks/useAxios";
 import WorkersCard from "./WorkersCard";
 import Loading from "../../../loading/Loading";
+import useAuth from "../../../hooks/useAuth";
 
 const TopWorkers = () => {
+  const { user } = useAuth();
   const axiosBase = useAxios();
   const {
     data: topWorkers = [],
@@ -12,9 +14,10 @@ const TopWorkers = () => {
   } = useQuery({
     queryKey: ["toWorkers"],
     queryFn: async () => {
-      const res = await axiosBase.get("/user/all-users");
+      const res = await axiosBase.get("/user/all-workers");
       return res.data;
     },
+    enabled: !!user?.email,
   });
 
   return (
