@@ -12,6 +12,7 @@ const WithdrawForm = ({ coin, email, displayName }) => {
     handleSubmit,
     setValue,
     formState: { errors },
+    reset,
   } = useForm();
 
   const onSubmit = async (data) => {
@@ -36,7 +37,7 @@ const WithdrawForm = ({ coin, email, displayName }) => {
           showConfirmButton: false,
           timer: 1000,
         });
-        // navigate(location?.state?.from || "/dashboard");
+        reset();
       }
     } catch (error) {
       Swal.fire({
