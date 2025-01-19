@@ -22,6 +22,7 @@ const TaskTable = ({ allTasks, refetch }) => {
                 title: "Deleted!",
                 text: "Your file has been deleted.",
                 icon: "success",
+                timer: 1000,
               });
               refetch();
             }

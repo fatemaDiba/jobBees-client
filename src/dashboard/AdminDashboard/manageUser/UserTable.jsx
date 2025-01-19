@@ -4,6 +4,7 @@ import useAxios from "../../../hooks/useAxios";
 
 const UserTable = ({ allUsers, refetch }) => {
   const axiosBase = useAxios();
+
   const handleDeleteBtn = (id) => {
     Swal.fire({
       title: "Are you sure?",
@@ -22,6 +23,7 @@ const UserTable = ({ allUsers, refetch }) => {
                 title: "Deleted!",
                 text: "Your file has been deleted.",
                 icon: "success",
+                timer: 1000,
               });
               refetch();
             }
@@ -33,6 +35,32 @@ const UserTable = ({ allUsers, refetch }) => {
           title: "Error!",
           text: "Something went wrong!",
           icon: "error",
+        });
+      });
+  };
+
+  const handleRole = (id, e) => {
+    const selectedRole = e.target.value;
+
+    axiosBase
+      .patch(`/user/all-users/${id}`, { userType: selectedRole })
+      .then((res) => {
+        if (res.data.modifiedCount) {
+          Swal.fire({
+            title: "Updated!",
+            text: "User Role has been Updated.",
+            icon: "success",
+            timer: 1000,
+          });
+          refetch();
+        }
+      })
+      .catch((err) => {
+        Swal.fire({
+          title: "Error!",
+          text: "Something went wrong!",
+          icon: "error",
+          timer: 1000,
         });
       });
   };
@@ -55,10 +83,10 @@ const UserTable = ({ allUsers, refetch }) => {
               <th className="p-2 md:p-4 text-center">Action</th>
             </tr>
           </thead>
-          {allUsers?.map((user) => {
-            return (
-              <tbody>
-                <tr className="border-b hover:bg-gray-100">
+          <tbody>
+            {allUsers?.map((user) => {
+              return (
+                <tr key={user?._id} className="border-b hover:bg-gray-100">
                   <td className="px-4 py-3">{user?.displayName}</td>
                   <td className="px-4 py-3">{user?.email}</td>
                   <td className="px-4 py-3">
@@ -80,20 +108,26 @@ const UserTable = ({ allUsers, refetch }) => {
                       >
                         <FaTrashCan></FaTrashCan>
                       </button>
-                      <select className="border  border-gray-300 rounded px-2 py-1">
-                        <option disabled selected>
+                      <select
+                        onChange={(e) => {
+                          handleRole(user?._id, e);
+                        }}
+                        defaultValue=""
+                        className="border  border-gray-300 rounded px-2 py-1"
+                      >
+                        <option value="" disabled>
                           Update Role
                         </option>
-                        <option value="Admin">Admin</option>
-                        <option value="Buyer">Buyer</option>
-                        <option value="Worker">Worker</option>
+                        <option value="admin">Admin</option>
+                        <option value="buyer">Buyer</option>
+                        <option value="worker">Worker</option>
                       </select>
                     </div>
                   </td>
                 </tr>
-              </tbody>
-            );
-          })}
+              );
+            })}
+          </tbody>
         </table>
       </div>
     </div>
