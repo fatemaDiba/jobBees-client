@@ -7,7 +7,11 @@ import Loading from "../../../loading/Loading";
 const ManageTask = () => {
   const axiosBase = useAxios();
 
-  const { data: allTasks = [], isLoading ,refetch} = useQuery({
+  const {
+    data: allTasks = [],
+    isLoading,
+    refetch,
+  } = useQuery({
     queryKey: ["allTasks"],
     queryFn: async () => {
       const res = await axiosBase.get("/task/all-tasks");
