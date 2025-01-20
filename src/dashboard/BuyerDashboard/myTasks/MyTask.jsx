@@ -13,7 +13,7 @@ const MyTask = () => {
   const {
     data: myTasks = [],
     isLoading,
-    refetch,
+    refetch: taskRefetch,
   } = useQuery({
     queryKey: ["myTasks", email],
     queryFn: async () => {
@@ -28,7 +28,7 @@ const MyTask = () => {
       <Title title="My Tasks"></Title>
       <div>
         {isLoading && <Loading></Loading>}
-        <TaskTable myTasks={myTasks} refetch={refetch}></TaskTable>
+        <TaskTable myTasks={myTasks} taskRefetch={taskRefetch}></TaskTable>
       </div>
     </div>
   );

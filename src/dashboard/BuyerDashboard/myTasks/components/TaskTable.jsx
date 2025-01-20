@@ -2,9 +2,11 @@ import { FaTrashCan } from "react-icons/fa6";
 import useAxios from "../../../../hooks/useAxios";
 import { Link } from "react-router-dom";
 import Swal from "sweetalert2";
+import useUser from "../../../../hooks/useUser";
 
-const TaskTable = ({ myTasks, refetch }) => {
+const TaskTable = ({ myTasks, taskRefetch }) => {
   const axiosBase = useAxios();
+  const [userData, userLoading, refetch] = useUser();
 
   const handleDeleteBtn = (id) => {
     Swal.fire({
@@ -25,7 +27,14 @@ const TaskTable = ({ myTasks, refetch }) => {
                 text: "Your file has been deleted.",
                 icon: "success",
               });
-              refetch();
+              // to validate
+              if (taskRefetch && typeof taskRefetch === "function") {
+                taskRefetch();
+              }
+
+              if (refetch && typeof refetch === "function") {
+                refetch();
+              }
             }
           });
         }

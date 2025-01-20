@@ -33,9 +33,9 @@ const WithdrawForm = ({ coin, email, displayName }) => {
         Swal.fire({
           position: "top-end",
           icon: "success",
-          title: "Successfully withdrew Money",
+          title: "Successfully Sent withdrew Request!",
           showConfirmButton: false,
-          timer: 1000,
+          timer: 1500,
         });
         reset();
       }

@@ -17,6 +17,7 @@ const WorkerHome = () => {
       );
       return res.data;
     },
+    enabled: !!user?.email,
   });
 
   const {
