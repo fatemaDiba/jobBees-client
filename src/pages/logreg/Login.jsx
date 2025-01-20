@@ -24,20 +24,21 @@ const Login = () => {
     const email = form.email.value;
     const password = form.password.value;
 
+    setLoading(true);
     oldUser(email, password)
       .then((res) => {
-        // console.log(res.user);
         Swal.fire({
           position: "top-end",
           icon: "success",
-          title: `Welcome Back ${user.displayname}`,
+          title: "Welcome Back!",
           showConfirmButton: false,
           timer: 1000,
         });
         setLoading(false);
-        navigate(location?.state ? location.state : "/");
+        navigate(location?.state ? location.state : "/dashboard");
       })
       .catch((error) => {
+        console.log(error);
         Swal.fire({
           position: "top-end",
           icon: "error",
@@ -50,6 +51,7 @@ const Login = () => {
   };
 
   const handleGoogleBtn = () => {
+    setLoading(true);
     signInWithGoogle()
       .then((res) => {
         const email = res?.user?.email;
@@ -57,28 +59,39 @@ const Login = () => {
         const photo = res?.user?.photoURL;
         const userData = { email, displayName, photo };
 
-        axiosBase.post("/user/add", userData).then((res) => {
-          if (res.data.acknowledged) {
+        axiosBase
+          .post("/user/add", userData)
+          .then((res) => {
+            if (res.data.acknowledged) {
+              Swal.fire({
+                position: "top-end",
+                icon: "success",
+                title: "Successfully created user",
+                showConfirmButton: false,
+                timer: 1000,
+              });
+              navigate(location?.state ? location.state : "/dashboard");
+            } else if (res.data.oldUser) {
+              Swal.fire({
+                position: "top-end",
+                icon: "success",
+                title: `Welcome Back ${displayName}`,
+                showConfirmButton: false,
+                timer: 1000,
+              });
+              navigate(location?.state ? location.state : "/dashboard");
+            }
+          })
+          .catch((error) => {
             Swal.fire({
               position: "top-end",
-              icon: "success",
-              title: "Successfully created user",
+              icon: "error",
+              title: "Something Went Wrong!",
               showConfirmButton: false,
               timer: 1000,
             });
-            navigate(location?.state ? location.state : "/dashboard");
-          }
-          if (res.data.oldUser) {
-            Swal.fire({
-              position: "top-end",
-              icon: "success",
-              title: `Welcome Back ${displayName}`,
-              showConfirmButton: false,
-              timer: 1000,
-            });
-            navigate(location?.state ? location.state : "/dashboard");
-          }
-        });
+            setLoading(false);
+          });
       })
       .catch((error) => {
         Swal.fire({

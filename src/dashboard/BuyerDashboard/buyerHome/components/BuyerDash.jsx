@@ -1,4 +1,8 @@
-const BuyerDash = () => {
+import Loading from "../../../../loading/Loading";
+
+const BuyerDash = ({ allTasks }) => {
+  const { totalTasks, totalRequiredWorkers } = allTasks;
+
   return (
     <div className="mb-16">
       <h2 className="text-2xl md:text-3xl font-bold text-gray-800 mb-5">
@@ -12,7 +16,7 @@ const BuyerDash = () => {
             Total Tasks
           </h3>
           <p className="text-xl md:text-2xl xl:text-3xl font-bold text-light-primary mt-2">
-            3
+            {totalTasks}
           </p>
         </div>
 
@@ -22,7 +26,7 @@ const BuyerDash = () => {
             Pending Tasks
           </h3>
           <p className="text-xl md:text-2xl xl:text-3xl font-bold text-orange-500 mt-2">
-            0
+            {totalRequiredWorkers}
           </p>
         </div>
 

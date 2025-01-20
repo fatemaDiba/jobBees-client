@@ -2,7 +2,7 @@ import { useState } from "react";
 import useAxios from "../../../../hooks/useAxios";
 import Swal from "sweetalert2";
 
-const ReviewTasks = ({ allSubmissions, refetch }) => {
+const ReviewTasks = ({ allSubmissions, refetch, taskRefetch }) => {
   const axiosBase = useAxios();
   const [showModal, setShowModal] = useState(false);
   const [selectedSubmission, setSelectedSubmission] = useState(null);
@@ -28,6 +28,7 @@ const ReviewTasks = ({ allSubmissions, refetch }) => {
             timer: 1500,
           });
           refetch();
+          taskRefetch();
         }
       })
       .catch((err) => {
@@ -42,9 +43,9 @@ const ReviewTasks = ({ allSubmissions, refetch }) => {
 
   const handleReject = (id) => {
     axiosBase
-      .patch(`/submission/all-submissions/${id}`)
+      .patch(`/submission/all-submissions/reject/${id}`)
       .then((res) => {
-        if (res.data.submissionUpdate) {
+        if (res.data.reject) {
           Swal.fire({
             title: "Rejected!",
             text: "Submission has been Rejected.",
@@ -52,6 +53,7 @@ const ReviewTasks = ({ allSubmissions, refetch }) => {
             timer: 1500,
           });
           refetch();
+          taskRefetch();
         }
       })
       .catch((err) => {
@@ -82,6 +84,7 @@ const ReviewTasks = ({ allSubmissions, refetch }) => {
               <th className="py-2 md:py-3 px-2 md:px-4 text-left">
                 Payable Amount
               </th>
+              <th className="py-2 md:py-3 px-2 md:px-4 text-left">Status</th>
               <th className="py-2 md:py-3 px-2 md:px-4 text-center">Actions</th>
             </tr>
           </thead>
@@ -100,6 +103,9 @@ const ReviewTasks = ({ allSubmissions, refetch }) => {
                 <td className="py-2 md:py-3 px-2 md:px-4">
                   ${submission.payable_amount}
                 </td>
+                <td className="py-2 md:py-3 px-2 md:px-4">
+                  {submission.status}
+                </td>
                 <td className="py-2 md:py-3 px-2 md:px-4 text-center">
                   <div className="flex flex-col md:flex-row justify-center gap-2">
                     <button
@@ -108,22 +114,43 @@ const ReviewTasks = ({ allSubmissions, refetch }) => {
                     >
                       View Submission
                     </button>
-                    <button
-                      onClick={() => {
-                        handleApprove(submission?._id);
-                      }}
-                      className="bg-green-500 text-white py-1 px-3 rounded hover:bg-green-600 mr-2"
-                    >
-                      Approve
-                    </button>
-                    <button
-                      onClick={() => {
-                        handleReject(submission?._id);
-                      }}
-                      className="bg-red-500 text-white py-1 px-3 rounded hover:bg-red-600 mr-2 md:mr-0 "
-                    >
-                      Reject
-                    </button>
+                    {submission.status === "pending" && (
+                      <div>
+                        {" "}
+                        <button
+                          onClick={() => {
+                            handleApprove(submission?._id);
+                          }}
+                          className="bg-green-500 text-white py-1 px-3 rounded hover:bg-green-600 mr-2"
+                        >
+                          Approve
+                        </button>
+                        <button
+                          onClick={() => {
+                            handleReject(submission?._id);
+                          }}
+                          className="bg-red-500 text-white py-1 px-3 rounded hover:bg-red-600 mr-2 md:mr-0 "
+                        >
+                          Reject
+                        </button>
+                      </div>
+                    )}
+                    {submission.status === "approved" && (
+                      <button
+                        disabled
+                        className="bg-green-300 text-white py-1 px-3 rounded cursor-not-allowed"
+                      >
+                        Approved
+                      </button>
+                    )}
+                    {submission.status === "rejected" && (
+                      <button
+                        disabled
+                        className="bg-red-300 text-white py-1 px-3 rounded cursor-not-allowed"
+                      >
+                        Rejected
+                      </button>
+                    )}
                   </div>
                 </td>
               </tr>
