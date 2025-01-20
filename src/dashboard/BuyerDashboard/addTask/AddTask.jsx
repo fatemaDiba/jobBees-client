@@ -3,16 +3,18 @@ import Title from "../../../components/Title";
 import useAxios from "../../../hooks/useAxios";
 import AddTaskForm from "./components/AddTaskForm";
 import { useForm } from "react-hook-form";
-import { toast } from "react-toastify";
 import axios from "axios";
 import Swal from "sweetalert2";
 import useAuth from "../../../hooks/useAuth";
 import { useNavigate } from "react-router-dom";
+import useUser from "../../../hooks/useUser";
 
 const imgBB_key = import.meta.env.VITE_IMG_API_key;
 const hostingAPI = `https://api.imgbb.com/1/upload?key=${imgBB_key}`;
 
 const AddTask = () => {
+  const [userData, userLoading, refetch] = useUser();
+
   const {
     register,
     handleSubmit,
@@ -37,14 +39,15 @@ const AddTask = () => {
       });
       const image = res?.data?.data?.display_url;
       if (image) {
-        const res = await axiosBase.post("/task/add-task", {
+        const taskData = {
           ...data,
           photo: image,
-          email: email,
-          buyerName: buyerName,
-        });
+          email,
+          buyerName,
+        };
+        const res = await axiosBase.post("/task/add-task", taskData);
 
-        if (res.data.acknowledged) {
+        if (res?.data?.acknowledged) {
           Swal.fire({
             position: "top-end",
             icon: "success",
@@ -52,13 +55,21 @@ const AddTask = () => {
             showConfirmButton: false,
             timer: 1000,
           });
-          formRef.current.reset();
+          await refetch();
+          navigate("/dashboard/my-added-task");
+        } else if (res?.data?.redirectToPurchaseCoin) {
+          Swal.fire({
+            position: "top-end",
+            icon: "error",
+            title: "Not Enough Coin",
+            showConfirmButton: false,
+            timer: 1000,
+          });
+          navigate("/dashboard/purchase-coin");
         }
-        navigate(location?.state?.from || "/dashboard/my-added-task");
-      } else {
-        toast.error("Failed to upload image. Try again.");
       }
     } catch (error) {
+      console.error("Error in onSubmit:", error);
       Swal.fire({
         position: "top-end",
         icon: "error",

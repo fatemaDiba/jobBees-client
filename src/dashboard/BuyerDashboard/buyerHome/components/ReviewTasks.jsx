@@ -116,7 +116,6 @@ const ReviewTasks = ({ allSubmissions, refetch, taskRefetch }) => {
                     </button>
                     {submission.status === "pending" && (
                       <div>
-                        {" "}
                         <button
                           onClick={() => {
                             handleApprove(submission?._id);
