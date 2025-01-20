@@ -38,7 +38,7 @@ const DetailCard = ({ singleTask }) => {
       workerName: user?.displayName,
       workerEmail: user?.email,
       submissionDate: currentDate,
-      status: "Pending",
+      status: "pending",
     };
 
     try {

@@ -1,4 +1,4 @@
-const WorkerDash = () => {
+const WorkerDash = ({ totalSubmissions, totalPending, totalEarnings }) => {
   return (
     <div className="p-10">
       <h2 className="text-xl md:text-2xl xl:text-3xl font-bold mb-6 text-gray-800">
@@ -12,7 +12,7 @@ const WorkerDash = () => {
             Total Submissions
           </h3>
           <p className="text-2xl md:text-3xl xl:text-4xl font-bold text-blue-500">
-            50
+            {totalSubmissions}
           </p>
         </div>
 
@@ -22,7 +22,7 @@ const WorkerDash = () => {
             Pending Submissions
           </h3>
           <p className="text-2xl md:text-3xl xl:text-4xl font-bold text-orange-500">
-            10
+            {totalPending}
           </p>
         </div>
 
@@ -32,7 +32,7 @@ const WorkerDash = () => {
             Total Earnings
           </h3>
           <p className="text-2xl md:text-3xl xl:text-4xl font-bold text-green-500">
-            $500
+            ${totalEarnings}
           </p>
         </div>
       </div>

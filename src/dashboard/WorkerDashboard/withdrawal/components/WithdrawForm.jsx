@@ -76,6 +76,10 @@ const WithdrawForm = ({ coin, email, displayName }) => {
               {...register("coinToWithdraw", {
                 required: "Coin To Withdraw is required",
                 onChange: handleCoinChange,
+                min: {
+                  value: 1,
+                  message: "Coin To Withdraw must be at least 1",
+                },
               })}
               className="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-400"
               placeholder="Enter coin amount"

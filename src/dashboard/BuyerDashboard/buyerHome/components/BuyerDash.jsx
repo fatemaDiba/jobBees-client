@@ -1,5 +1,3 @@
-import Loading from "../../../../loading/Loading";
-
 const BuyerDash = ({ allTasks }) => {
   const { totalTasks, totalRequiredWorkers } = allTasks;
 

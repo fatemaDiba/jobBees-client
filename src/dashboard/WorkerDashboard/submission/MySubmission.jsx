@@ -21,11 +21,11 @@ const MySubmission = () => {
 
   const getStatusClass = (status) => {
     switch (status) {
-      case "Approved":
+      case "approved":
         return "text-green-500 bg-green-100";
-      case "Pending":
+      case "pending":
         return "text-yellow-500 bg-yellow-100";
-      case "Rejected":
+      case "rejected":
         return "text-red-500 bg-red-100";
       default:
         return "text-gray-500 bg-gray-100";
@@ -41,49 +41,53 @@ const MySubmission = () => {
             My Submissions
           </h2>
           <div className="overflow-x-auto bg-white shadow-lg rounded-lg border border-gray-200">
-            <table className="table-auto w-full text-left min-w-max">
-              <thead>
-                <tr className="bg-gray-200">
-                  <th className="px-4 py-2 text-gray-600 font-semibold">
-                    Task Title
-                  </th>
-                  <th className="px-4 py-2 text-gray-600 font-semibold">
-                    Buyer Name
-                  </th>
-                  <th className="px-4 py-2 text-gray-600 font-semibold">
-                    Payable Amount
-                  </th>
-                  <th className="px-4 py-2 text-gray-600 font-semibold">
-                    Status
-                  </th>
-                </tr>
-              </thead>
-              {isLoading && <Loading></Loading>}
-              {mySubmission?.map((submission) => {
-                return (
-                  <tbody>
-                    <tr key={submission.id} className="hover:bg-gray-50">
-                      <td className="px-4 py-2 border-t">
-                        {submission?.task_title}
-                      </td>
-                      <td className="px-4 py-2 border-t">
-                        {submission?.buyerName}
-                      </td>
-                      <td className="px-4 py-2 border-t">
-                        {submission?.payable_amount}
-                      </td>
-                      <td
-                        className={`px-4 py-2 border-t font-bold rounded ${getStatusClass(
-                          submission?.status
-                        )}`}
-                      >
-                        {submission.status}
-                      </td>
-                    </tr>
-                  </tbody>
-                );
-              })}
-            </table>
+            {isLoading ? (
+              <Loading></Loading>
+            ) : (
+              <table className="table-auto w-full text-left min-w-max">
+                <thead>
+                  <tr className="bg-gray-200">
+                    <th className="px-4 py-2 text-gray-600 font-semibold">
+                      Task Title
+                    </th>
+                    <th className="px-4 py-2 text-gray-600 font-semibold">
+                      Buyer Name
+                    </th>
+                    <th className="px-4 py-2 text-gray-600 font-semibold">
+                      Payable Amount
+                    </th>
+                    <th className="px-4 py-2 text-gray-600 font-semibold">
+                      Status
+                    </th>
+                  </tr>
+                </thead>
+
+                <tbody>
+                  {mySubmission?.map((submission) => {
+                    return (
+                      <tr key={submission?._id} className="hover:bg-gray-50">
+                        <td className="px-4 py-2 border-t">
+                          {submission?.task_title}
+                        </td>
+                        <td className="px-4 py-2 border-t">
+                          {submission?.buyerName}
+                        </td>
+                        <td className="px-4 py-2 border-t">
+                          {submission?.payable_amount}
+                        </td>
+                        <td
+                          className={`px-4 py-2 border-t font-bold rounded ${getStatusClass(
+                            submission?.status
+                          )}`}
+                        >
+                          {submission.status}
+                        </td>
+                      </tr>
+                    );
+                  })}
+                </tbody>
+              </table>
+            )}
           </div>
         </div>
       </div>
