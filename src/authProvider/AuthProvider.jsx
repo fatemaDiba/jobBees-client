@@ -9,14 +9,14 @@ import {
 } from "firebase/auth";
 import { createContext, useEffect, useState } from "react";
 import auth from "../../Firebase/firebase.config";
-// import useAxios from "../hooks/useAxios";
+import useAxios from "../hooks/useAxios";
 
 export const AuthContext = createContext(null);
 
 const AuthProvider = ({ children }) => {
   const [user, setUser] = useState();
   const [loading, setLoading] = useState(true);
-  //   const axiosBase = useAxios();
+  const axiosBase = useAxios();
 
   const newUser = (email, password) => {
     setLoading(true);
@@ -46,19 +46,24 @@ const AuthProvider = ({ children }) => {
   };
 
   useEffect(() => {
-    const unSubscribe = onAuthStateChanged(auth, (currentUser) => {
+    const unSubscribe = onAuthStateChanged(auth, async (currentUser) => {
       setUser(currentUser);
-      //   const email = currentUser?.email;
-      //   if (email) {
-      //     axiosBase
-      //       .post("/auth/jwt", { email }, { withCredentials: true })
-      //       .then((res) => console.log("User Verified", res.data));
-      //   } else {
-      //     axiosBase
-      //       .post("/auth/logout", {}, { withCredentials: true })
-      //       .then((res) => console.log("User Logged Out", res.data));
-      //   }
-      setLoading(false);
+      const email = currentUser?.email;
+      try {
+        if (email) {
+          const res = await axiosBase.post("/auth/jwt", { email });
+          console.log(res);
+          if (res) {
+            localStorage.setItem("token", res?.data?.token);
+          }
+        } else {
+          localStorage.removeItem("token");
+        }
+      } catch (error) {
+        console.log("Error during auth state handling:", error);
+      } finally {
+        setLoading(false);
+      }
     });
     return () => {
       unSubscribe();
