@@ -52,7 +52,7 @@ const AuthProvider = ({ children }) => {
       try {
         if (email) {
           const res = await axiosBase.post("/auth/jwt", { email });
-          console.log(res);
+
           if (res) {
             localStorage.setItem("token", res?.data?.token);
           }
@@ -60,7 +60,6 @@ const AuthProvider = ({ children }) => {
           localStorage.removeItem("token");
         }
       } catch (error) {
-        console.log("Error during auth state handling:", error);
       } finally {
         setLoading(false);
       }

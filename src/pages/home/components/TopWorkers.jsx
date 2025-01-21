@@ -17,7 +17,6 @@ const TopWorkers = () => {
       const res = await axiosBase.get("/user/all-workers");
       return res.data;
     },
-    enabled: !!user?.email,
   });
 
   return (

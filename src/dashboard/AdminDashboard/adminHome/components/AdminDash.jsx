@@ -1,5 +1,5 @@
 const AdminDash = ({ allUsers }) => {
-  const { totalBuyer, totalWorker, totalCoins } = allUsers;
+  const { totalBuyer, totalWorker, totalCoins, totalPayment } = allUsers;
 
   return (
     <div className="p-4 md:p-6 lg:p-10">
@@ -41,7 +41,7 @@ const AdminDash = ({ allUsers }) => {
             Total Payments
           </h3>
           <p className="text-lg md:text-xl xl:text-2xl font-semibold text-red-500 mt-2 md:mt-4">
-            $45,678
+            ${totalPayment}
           </p>
         </div>
       </div>

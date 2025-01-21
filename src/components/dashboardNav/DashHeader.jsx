@@ -7,9 +7,11 @@ import { Link, useNavigate } from "react-router-dom";
 import { Tooltip } from "react-tooltip";
 import { PiCoinsFill } from "react-icons/pi";
 import useUser from "../../hooks/useUser";
+import { useState } from "react";
 
-const DashHeader = () => {
+const DashHeader = ({ notifications }) => {
   const { user, logOutUser } = useAuth();
+  const [showNotification, setShowNotification] = useState(false);
   const navigate = useNavigate();
   const [userData] = useUser();
 
@@ -37,6 +39,10 @@ const DashHeader = () => {
       });
   };
 
+  const handleShowNotification = () => {
+    setShowNotification(!showNotification);
+  };
+
   return (
     <div className="bg-light-secondary/90">
       <Title title="Dashboard"></Title>
@@ -53,7 +59,7 @@ const DashHeader = () => {
             </Link>
           </div>
         </div>
-        <div className="navbar-end">
+        <div className="navbar-end relative">
           {/* Coin */}
           <div className="px-2 md:px-3 py-2 flex items-center justify-center gap-1 rounded-lg hover:bg-blue-500 bg-light-accent">
             <span className="font-bold text-sm md:text-base">
@@ -84,10 +90,35 @@ const DashHeader = () => {
           </div>
 
           {/* notification */}
-          <button className="w-10 h-10 hover:bg-slate-400 rounded-full  flex items-center justify-center">
-            <div className="indicator">
+          <button className="w-10 h-10 mr-2 hover:bg-slate-400 rounded-full  flex items-center justify-center">
+            <div
+              onClick={handleShowNotification}
+              className="relative indicator"
+            >
               <TbBellFilled className="text-2xl"></TbBellFilled>
-              {/* <span className="badge badge-xs badge-primary indicator-item"></span> */}
+              <div
+                className={`absolute top-12 right-0 w-[280px] md:w-[400px] bg-white shadow-md rounded-lg p-4 z-50 overflow-y-auto h-64 ${
+                  showNotification ? "block" : "hidden"
+                }`}
+              >
+                {notifications.length > 0 ? (
+                  notifications?.map((notification) => {
+                    return (
+                      <div className="p-2 border-b last:border-b-0 border-blue-500 hover:bg-gray-100 text-start">
+                        <p>{notification.message}</p>
+                        <p className="text-end">
+                          {new Date(notification.time).toLocaleDateString()}
+                        </p>
+                      </div>
+                    );
+                  })
+                ) : (
+                  <p>No Notifications For You</p>
+                )}
+              </div>
+              {notifications && (
+                <span className="badge badge-xs badge-primary indicator-item"></span>
+              )}
             </div>
           </button>
 

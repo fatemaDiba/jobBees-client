@@ -26,7 +26,9 @@ const PayTable = ({ paymentHistory }) => {
                   <td className="py-3 px-4">
                     {new Date(payment.date).toLocaleDateString()}
                   </td>
-                  <td className="py-3 px-4">${payment.price}</td>
+                  <td className="py-3 px-4 text-green-600 font-semibold">
+                    ${payment.price}
+                  </td>
                 </tr>
               );
             })}
