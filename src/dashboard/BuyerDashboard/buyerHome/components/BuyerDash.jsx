@@ -1,5 +1,5 @@
 const BuyerDash = ({ allTasks }) => {
-  const { totalTasks, totalRequiredWorkers } = allTasks;
+  const { totalTasks, totalRequiredWorkers, totalPayment } = allTasks;
 
   return (
     <div className="mb-16">
@@ -34,7 +34,7 @@ const BuyerDash = ({ allTasks }) => {
             Total Payment
           </h3>
           <p className="text-xl md:text-2xl xl:text-3xl font-bold text-green-500 mt-2">
-            $0.00
+            ${totalPayment}
           </p>
         </div>
       </div>
