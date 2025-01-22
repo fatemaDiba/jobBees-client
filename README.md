@@ -1,5 +1,5 @@
 <h1>Project Name: JobBees</h1>
-<h2>Link: <a href="">Click here to access JobBees</a></h2>
+<h2>Link: <a href="https://job-bees-by-fatema.surge.sh/">Click here</a></h2>
 
 <h2>Purpose:</h2>
 
