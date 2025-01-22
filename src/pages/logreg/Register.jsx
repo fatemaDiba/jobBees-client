@@ -18,8 +18,8 @@ const Register = () => {
   const [showPass, setShowPass] = useState(false);
   const { newUser, setLoading, updateUser } = useAuth();
   const navigate = useNavigate();
-  const location = useLocation();
   const axiosBase = useAxios();
+
   const {
     register,
     handleSubmit,
@@ -45,11 +45,9 @@ const Register = () => {
 
       if (image) {
         const userRes = await newUser(email, password);
-        // console.log("User Created:", userRes.user);
         await updateUser(name, image);
 
         const userData = { email, displayName: name, role, photo: image };
-        console.log(userData);
         const res = await axiosBase.post("/user/add", userData);
 
         if (res.data.acknowledged) {
@@ -60,7 +58,8 @@ const Register = () => {
             showConfirmButton: false,
             timer: 1000,
           });
-          navigate(location?.state?.from || "/dashboard");
+          setLoading(false);
+          navigate("/dashboard/home", { replace: true });
         }
       } else {
         toast.error("Failed to upload image. Try again.");

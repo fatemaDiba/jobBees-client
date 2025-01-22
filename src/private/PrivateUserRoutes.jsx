@@ -12,7 +12,7 @@ const PrivateUserRoutes = ({ children }) => {
   if (loading || userLoading) {
     return <Loading></Loading>;
   }
-  if (user && role === "user") {
+  if (user && role === "buyer") {
     return children;
   }
   return <Navigate state={location.pathname} to="/login" replace></Navigate>;

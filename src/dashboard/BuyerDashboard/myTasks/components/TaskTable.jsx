@@ -1,11 +1,11 @@
 import { FaTrashCan } from "react-icons/fa6";
-import useAxios from "../../../../hooks/useAxios";
 import { Link } from "react-router-dom";
 import Swal from "sweetalert2";
 import useUser from "../../../../hooks/useUser";
+import useAxiosSecure from "../../../../hooks/useAxiosSecure";
 
 const TaskTable = ({ myTasks, taskRefetch }) => {
-  const axiosBase = useAxios();
+  const axiosSecure = useAxiosSecure();
   const [userData, userLoading, refetch] = useUser();
 
   const handleDeleteBtn = (id) => {
@@ -20,7 +20,7 @@ const TaskTable = ({ myTasks, taskRefetch }) => {
     })
       .then((result) => {
         if (result.isConfirmed) {
-          axiosBase.delete(`/task/my-tasks/${id}`).then((res) => {
+          axiosSecure.delete(`/task/my-tasks/${id}`).then((res) => {
             if (res.data.deletedCount) {
               Swal.fire({
                 title: "Deleted!",

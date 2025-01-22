@@ -11,7 +11,6 @@ const Login = () => {
   const [showPass, setShowPass] = useState(false);
   const { oldUser, signInWithGoogle, setLoading, user } = useAuth();
   const navigate = useNavigate();
-  const location = useLocation();
   const axiosBase = useAxios();
 
   const handleShowPass = () => {
@@ -35,7 +34,7 @@ const Login = () => {
           timer: 1000,
         });
         setLoading(false);
-        navigate(location?.state ? location.state : "/dashboard");
+        navigate("/dashboard/home");
       })
       .catch((error) => {
         console.log(error);
@@ -70,7 +69,7 @@ const Login = () => {
                 showConfirmButton: false,
                 timer: 1000,
               });
-              navigate(location?.state ? location.state : "/dashboard");
+              navigate("/dashboard/home");
             } else if (res.data.oldUser) {
               Swal.fire({
                 position: "top-end",
@@ -79,7 +78,7 @@ const Login = () => {
                 showConfirmButton: false,
                 timer: 1000,
               });
-              navigate(location?.state ? location.state : "/dashboard");
+              navigate("/dashboard/home");
             }
           })
           .catch((error) => {

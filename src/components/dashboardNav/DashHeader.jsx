@@ -50,18 +50,15 @@ const DashHeader = ({ notifications }) => {
       <div className="navbar w-11/12 mx-auto">
         <div className="navbar-start ">
           <div className="flex items-center gap-4">
-            <Link
-              to="/"
-              className="flex gap-3 items-center text-xl md:text-2xl xl:text-[28px] dark:text-white font-bold"
-            >
+            <div className="flex gap-3 items-center text-xl md:text-2xl xl:text-[28px] dark:text-white font-bold">
               <img src="/assets/logo.png" alt="logo" className="w-10" />
               <p className="hidden sm:block">JobBees</p>
-            </Link>
+            </div>
           </div>
         </div>
         <div className="navbar-end relative">
           {/* Coin */}
-          <div className="px-2 md:px-3 py-2 flex items-center justify-center gap-1 rounded-lg hover:bg-blue-500 bg-light-accent">
+          <div className="px-2 md:px-3 py-2 md:mr-2 flex items-center justify-center gap-1 rounded-lg hover:bg-blue-500 bg-light-accent">
             <span className="font-bold text-sm md:text-base">
               {userData?.coin}
             </span>
@@ -90,7 +87,7 @@ const DashHeader = ({ notifications }) => {
           </div>
 
           {/* notification */}
-          <button className="w-10 h-10 mr-2 hover:bg-slate-400 rounded-full  flex items-center justify-center">
+          <button className="w-10 h-10 md:mr-2 hover:bg-slate-400 rounded-full  flex items-center justify-center">
             <div
               onClick={handleShowNotification}
               className="relative indicator"
@@ -104,7 +101,10 @@ const DashHeader = ({ notifications }) => {
                 {notifications.length > 0 ? (
                   notifications?.map((notification) => {
                     return (
-                      <div className="p-2 border-b last:border-b-0 border-blue-500 hover:bg-gray-100 text-start">
+                      <div
+                        key={notification._id}
+                        className="p-2 border-b last:border-b-0 border-blue-500 hover:bg-gray-100 text-start"
+                      >
                         <p>{notification.message}</p>
                         <p className="text-end">
                           {new Date(notification.time).toLocaleDateString()}

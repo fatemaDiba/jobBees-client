@@ -26,6 +26,10 @@ import PurchaseCoin from "../dashboard/BuyerDashboard/purchase/PurchaseCoin";
 import UpdateTask from "../dashboard/BuyerDashboard/myTasks/components/UpdateTask";
 import DetailTask from "../dashboard/WorkerDashboard/taskList/components/DetailTask";
 import Checkout from "../dashboard/BuyerDashboard/purchase/checkout/Checkout";
+import PrivateUserRoutes from "../private/PrivateUserRoutes";
+import PrivateWorkerRoutes from "../private/PrivateWorkerRoutes";
+import PrivateAdminRoutes from "../private/PrivateAdminRoutes";
+import { Home as DashboardHome } from "../dashboard/Home";
 
 const router = createBrowserRouter([
   {
@@ -80,68 +84,132 @@ const router = createBrowserRouter([
     element: <Dashboard></Dashboard>,
     errorElement: <Error></Error>,
     children: [
+      {
+        path: "/dashboard/home",
+        element: <DashboardHome></DashboardHome>,
+      },
       // admin routes
       {
         path: "/dashboard/admin-home",
-        element: <AdminHome></AdminHome>,
+        element: (
+          <PrivateAdminRoutes>
+            <AdminHome></AdminHome>
+          </PrivateAdminRoutes>
+        ),
       },
       {
         path: "/dashboard/manage-task",
-        element: <ManageTask></ManageTask>,
+        element: (
+          <PrivateAdminRoutes>
+            <ManageTask></ManageTask>
+          </PrivateAdminRoutes>
+        ),
       },
       {
         path: "/dashboard/manage-user",
-        element: <ManageUser></ManageUser>,
+        element: (
+          <PrivateAdminRoutes>
+            <ManageUser></ManageUser>
+          </PrivateAdminRoutes>
+        ),
       },
       // buyer routes
       {
         path: "/dashboard/buyer-home",
-        element: <BuyerHome></BuyerHome>,
+        element: (
+          <PrivateUserRoutes>
+            <BuyerHome></BuyerHome>
+          </PrivateUserRoutes>
+        ),
       },
       {
         path: "/dashboard/add-task",
-        element: <AddTask></AddTask>,
+        element: (
+          <PrivateUserRoutes>
+            <AddTask></AddTask>
+          </PrivateUserRoutes>
+        ),
       },
       {
         path: "/dashboard/my-added-task",
-        element: <MyTask></MyTask>,
+        element: (
+          <PrivateUserRoutes>
+            <MyTask></MyTask>
+          </PrivateUserRoutes>
+        ),
       },
       {
         path: "/dashboard/update-task/:id",
-        element: <UpdateTask></UpdateTask>,
+        element: (
+          <PrivateUserRoutes>
+            <UpdateTask></UpdateTask>
+          </PrivateUserRoutes>
+        ),
       },
       {
         path: "/dashboard/payment-history",
-        element: <PaymentHistory></PaymentHistory>,
+        element: (
+          <PrivateUserRoutes>
+            <PaymentHistory></PaymentHistory>
+          </PrivateUserRoutes>
+        ),
       },
       {
         path: "/dashboard/purchase-coin",
-        element: <PurchaseCoin></PurchaseCoin>,
+        element: (
+          <PrivateUserRoutes>
+            <PurchaseCoin></PurchaseCoin>
+          </PrivateUserRoutes>
+        ),
       },
       {
         path: "/dashboard/checkout",
-        element: <Checkout></Checkout>,
+        element: (
+          <PrivateUserRoutes>
+            <Checkout></Checkout>
+          </PrivateUserRoutes>
+        ),
       },
       // worker routes
       {
         path: "/dashboard/worker-home",
-        element: <WorkerHome></WorkerHome>,
+        element: (
+          <PrivateWorkerRoutes>
+            <WorkerHome></WorkerHome>
+          </PrivateWorkerRoutes>
+        ),
       },
       {
         path: "/dashboard/my-submission",
-        element: <MySubmission></MySubmission>,
+        element: (
+          <PrivateWorkerRoutes>
+            <MySubmission></MySubmission>
+          </PrivateWorkerRoutes>
+        ),
       },
       {
         path: "/dashboard/task-list",
-        element: <TaskList></TaskList>,
+        element: (
+          <PrivateWorkerRoutes>
+            <TaskList></TaskList>
+          </PrivateWorkerRoutes>
+        ),
       },
       {
         path: "/dashboard/task-details/:id",
-        element: <DetailTask></DetailTask>,
+        element: (
+          <PrivateWorkerRoutes>
+            <DetailTask></DetailTask>
+          </PrivateWorkerRoutes>
+        ),
       },
       {
         path: "/dashboard/withdrawal",
-        element: <Withdrawals></Withdrawals>,
+        element: (
+          <PrivateWorkerRoutes>
+            <Withdrawals></Withdrawals>
+          </PrivateWorkerRoutes>
+        ),
       },
     ],
   },

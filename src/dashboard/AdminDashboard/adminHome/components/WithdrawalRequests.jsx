@@ -2,10 +2,12 @@ import { useQuery } from "@tanstack/react-query";
 import useAuth from "../../../../hooks/useAuth";
 import useAxios from "../../../../hooks/useAxios";
 import Swal from "sweetalert2";
+import useAxiosSecure from "../../../../hooks/useAxiosSecure";
 
 const WithdrawalRequests = () => {
   const { user } = useAuth();
   const axiosBase = useAxios();
+  const axiosSecure = useAxiosSecure();
 
   const { data: allWithdraw = [], refetch } = useQuery({
     queryKey: ["allWithdraw"],
@@ -17,7 +19,7 @@ const WithdrawalRequests = () => {
   });
 
   const handlePaymentBtn = (id) => {
-    axiosBase
+    axiosSecure
       .patch(`/withdraw/all-withdraws/${id}`)
       .then((res) => {
         if (res.data.withdrawal) {

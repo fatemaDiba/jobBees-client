@@ -29,7 +29,7 @@ const WorkerHome = () => {
 
   return (
     <div className="bg-gray-50 pb-16">
-      <Title title="Worker-Home"></Title>
+      <Title title="Home"></Title>
       <div>
         {isLoading && <Loading></Loading>}
 

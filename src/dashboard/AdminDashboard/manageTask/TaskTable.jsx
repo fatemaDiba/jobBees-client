@@ -1,9 +1,10 @@
 import { FaTrashCan } from "react-icons/fa6";
-import useAxios from "../../../hooks/useAxios";
 import Swal from "sweetalert2";
+import useAxiosSecure from "../../../hooks/useAxiosSecure";
 
 const TaskTable = ({ allTasks, refetch }) => {
-  const axiosBase = useAxios();
+  const axiosSecure = useAxiosSecure();
+
   const handleDeleteBtn = (id) => {
     Swal.fire({
       title: "Are you sure?",
@@ -16,7 +17,7 @@ const TaskTable = ({ allTasks, refetch }) => {
     })
       .then((result) => {
         if (result.isConfirmed) {
-          axiosBase.delete(`/task/all-tasks/${id}`).then((res) => {
+          axiosSecure.delete(`/task/all-tasks/${id}`).then((res) => {
             if (res.data.deletedCount) {
               Swal.fire({
                 title: "Deleted!",
@@ -62,10 +63,13 @@ const TaskTable = ({ allTasks, refetch }) => {
               <th className="p-2 md:p-4  min-w-[150px] text-left">Action</th>
             </tr>
           </thead>
-          {allTasks?.map((task) => {
-            return (
-              <tbody>
-                <tr className="border-b hover:bg-gray-100 text-xs md:text-sm">
+          <tbody>
+            {allTasks?.map((task) => {
+              return (
+                <tr
+                  key={task._id}
+                  className="border-b hover:bg-gray-100 text-xs md:text-sm"
+                >
                   <td className="px-4 py-3">{task?.title}</td>
                   <td className=" px-4 py-3">{task?.task_detail}</td>
                   <td className="px-4 py-3">{task?.required_workers}</td>
@@ -82,9 +86,9 @@ const TaskTable = ({ allTasks, refetch }) => {
                     </button>
                   </td>
                 </tr>
-              </tbody>
-            );
-          })}
+              );
+            })}
+          </tbody>
         </table>
       </div>
     </div>

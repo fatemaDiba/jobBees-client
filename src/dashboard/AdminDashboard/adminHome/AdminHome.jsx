@@ -17,7 +17,7 @@ const AdminHome = () => {
 
   return (
     <div className="bg-gray-50 pb-16">
-      <Title title="Admin-Home"></Title>
+      <Title title="Home"></Title>
       <div>
         <AdminDash allUsers={allUsers}></AdminDash>
         <WithdrawalRequests></WithdrawalRequests>

@@ -1,6 +1,5 @@
 import { useRef } from "react";
 import Title from "../../../components/Title";
-import useAxios from "../../../hooks/useAxios";
 import AddTaskForm from "./components/AddTaskForm";
 import { useForm } from "react-hook-form";
 import axios from "axios";
@@ -8,6 +7,7 @@ import Swal from "sweetalert2";
 import useAuth from "../../../hooks/useAuth";
 import { useNavigate } from "react-router-dom";
 import useUser from "../../../hooks/useUser";
+import useAxiosSecure from "../../../hooks/useAxiosSecure";
 
 const imgBB_key = import.meta.env.VITE_IMG_API_key;
 const hostingAPI = `https://api.imgbb.com/1/upload?key=${imgBB_key}`;
@@ -20,7 +20,8 @@ const AddTask = () => {
     handleSubmit,
     formState: { errors },
   } = useForm();
-  const axiosBase = useAxios();
+
+  const axiosSecure = useAxiosSecure();
   const formRef = useRef();
   const { user } = useAuth();
   const buyerName = user?.displayName;
@@ -45,7 +46,7 @@ const AddTask = () => {
           email,
           buyerName,
         };
-        const res = await axiosBase.post("/task/add-task", taskData);
+        const res = await axiosSecure.post("/task/add-task", taskData);
 
         if (res?.data?.acknowledged) {
           Swal.fire({

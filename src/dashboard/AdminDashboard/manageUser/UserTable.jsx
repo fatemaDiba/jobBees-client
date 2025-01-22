@@ -1,9 +1,11 @@
 import { FaTrashCan } from "react-icons/fa6";
 import Swal from "sweetalert2";
 import useAxios from "../../../hooks/useAxios";
+import useAxiosSecure from "../../../hooks/useAxiosSecure";
 
 const UserTable = ({ allUsers, refetch }) => {
   const axiosBase = useAxios();
+  const axiosSecure = useAxiosSecure();
 
   const handleDeleteBtn = (id) => {
     Swal.fire({
@@ -17,7 +19,7 @@ const UserTable = ({ allUsers, refetch }) => {
     })
       .then((result) => {
         if (result.isConfirmed) {
-          axiosBase.delete(`/user/all-users/${id}`).then((res) => {
+          axiosSecure.delete(`/user/all-users/${id}`).then((res) => {
             if (res.data.deletedCount) {
               Swal.fire({
                 title: "Deleted!",
@@ -42,7 +44,7 @@ const UserTable = ({ allUsers, refetch }) => {
   const handleRole = (id, e) => {
     const selectedRole = e.target.value;
 
-    axiosBase
+    axiosSecure
       .patch(`/user/all-users/${id}`, { userType: selectedRole })
       .then((res) => {
         if (res.data.modifiedCount) {

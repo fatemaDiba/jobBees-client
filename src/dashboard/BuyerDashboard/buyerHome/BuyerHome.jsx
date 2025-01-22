@@ -38,7 +38,7 @@ const BuyerHome = () => {
 
   return (
     <div className="bg-gray-50 pb-16 p-10">
-      <Title title="User-Home"></Title>
+      <Title title="Home"></Title>
       <div>
         <BuyerDash allTasks={allTasks}></BuyerDash>
 
