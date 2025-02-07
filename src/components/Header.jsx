@@ -41,6 +41,17 @@ const Header = () => {
           Home
         </NavLink>
       </li>
+      {user && (
+        <li>
+          <NavLink
+            to="/dashboard/home"
+            className={({ isActive }) => (isActive ? "active link" : "link")}
+          >
+            Dashboard
+          </NavLink>
+        </li>
+      )}
+
       <li>
         <Link
           to="https://github.com/Programming-Hero-Web-Course4/b10a12-client-side-fatemaDiba"

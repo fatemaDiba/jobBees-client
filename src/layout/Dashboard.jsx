@@ -29,17 +29,19 @@ const Dashboard = () => {
 
   return (
     <div>
-      <div className="flex">
+      <div className="flex min-h-screen">
         <div
-          className={`min-h-full bg-slate-200 transition-all duration-300 ${
-            sidebar ? "w-[15%] md:w-[7%]" : "w-[20%]"
+          className={` bg-slate-200 transition-all duration-300 ${
+            sidebar ? "w-[15%] md:w-[7%]" : "md:w-[15%] w-[50%]"
           } `}
         >
           <Sidebar sidebar={sidebar} handleSidebar={handleSidebar}></Sidebar>
         </div>
-        <div className="w-full overflow-hidden">
+        <div className="w-full overflow-hidden flex flex-col min-h-screen">
           <DashHeader notifications={notifications}></DashHeader>
-          <Outlet></Outlet>
+          <div className="h-full bg-gray-50">
+            <Outlet></Outlet>
+          </div>
           <Footer></Footer>
         </div>
       </div>

@@ -4,7 +4,7 @@ import { FaGithub } from "react-icons/fa6";
 
 const Footer = () => {
   return (
-    <footer className="bg-base-200 py-10">
+    <footer className="bg-base-200 py-10 mt-auto">
       <div className="footer w-10/12 md:container xl:w-10/12 mx-auto py-10">
         <div className="self-center col-span-2 lg:col-span-1">
           <img src="/assets/logo.png" alt="logo" className="w-14 md:w-16" />

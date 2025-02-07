@@ -50,10 +50,13 @@ const DashHeader = ({ notifications }) => {
       <div className="navbar w-11/12 mx-auto">
         <div className="navbar-start ">
           <div className="flex items-center gap-4">
-            <div className="flex gap-3 items-center text-xl md:text-2xl xl:text-[28px] dark:text-white font-bold">
+            <Link
+              to="/"
+              className="flex gap-3 items-center text-xl md:text-2xl xl:text-[28px] dark:text-white font-bold"
+            >
               <img src="/assets/logo.png" alt="logo" className="w-10" />
               <p className="hidden sm:block">JobBees</p>
-            </div>
+            </Link>
           </div>
         </div>
         <div className="navbar-end relative">

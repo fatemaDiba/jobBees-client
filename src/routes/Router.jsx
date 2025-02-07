@@ -8,7 +8,7 @@ import Contact from "../footerRoutes/Contact";
 import About from "../footerRoutes/About";
 import Cookie from "../footerRoutes/Cookies";
 import PrivacyPolicy from "../footerRoutes/PrivacyPolicy";
-import TermsOfUse from "../footerRoutes/TermOfUse";
+
 import PrivateUser from "../private/PrivateUser";
 import Dashboard from "../layout/Dashboard";
 import ManageTask from "../dashboard/AdminDashboard/manageTask/ManageTask";
@@ -30,6 +30,7 @@ import PrivateUserRoutes from "../private/PrivateUserRoutes";
 import PrivateWorkerRoutes from "../private/PrivateWorkerRoutes";
 import PrivateAdminRoutes from "../private/PrivateAdminRoutes";
 import { Home as DashboardHome } from "../dashboard/Home";
+import TermsOfUse from "../footerRoutes/TermOfUse";
 
 const router = createBrowserRouter([
   {
