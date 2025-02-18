@@ -1,18 +1,43 @@
 import { FaPhone, FaEnvelope, FaMapMarkerAlt } from "react-icons/fa";
 import Swal from "sweetalert2";
 import Title from "../components/Title";
+import emailjs from "@emailjs/browser";
+import { useRef } from "react";
 
 const Contact = () => {
-  const handleContact = (e) => {
+  // const handleContact = (e) => {
+  //   e.preventDefault();
+  //   const form = e.target;
+  //   const name = form.name.value;
+  //   Swal.fire({
+  //     title: `Thank You, ${name}!`,
+  //     text: "Your message has been received. We'll get back to you shortly!",
+  //     icon: "success",
+  //     confirmButtonText: "OK",
+  //     customClass: {
+  //       confirmButton: "custom-btn",
+  //     },
+  //   });
+  //   form.reset();
+  // };
+
+  const form = useRef();
+
+  const sendEmail = (e) => {
     e.preventDefault();
-    const form = e.target;
-    const name = form.name.value;
-    Swal.fire({
-      title: `Thank You, ${name}!`,
-      text: "Your message has been received. We'll get back to you shortly!",
-      icon: "success",
-    });
-    form.reset();
+
+    emailjs
+      .sendForm("service_bb3kl2g", "template_9htym4s", form.current, {
+        publicKey: "23eiqjRap3Ch39u3M",
+      })
+      .then(
+        () => {
+          console.log("SUCCESS!");
+        },
+        (error) => {
+          console.log("FAILED...", error.text);
+        }
+      );
   };
 
   return (
@@ -80,13 +105,13 @@ const Contact = () => {
                   get in touch.
                 </p>
                 <div className="max-w-lg mx-auto mt-8">
-                  <form onSubmit={handleContact}>
+                  <form ref={form} onSubmit={sendEmail}>
                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
                       <div className="form-control">
                         <label className="label text-left">Name</label>
                         <input
                           type="text"
-                          name="name"
+                          name="from_name"
                           placeholder="Your Name"
                           className="input input-bordered w-full"
                           required
@@ -96,7 +121,7 @@ const Contact = () => {
                         <label className="label text-left">Email</label>
                         <input
                           type="email"
-                          name="email"
+                          name="from_email"
                           placeholder="Your Email"
                           className="input input-bordered w-full"
                           required

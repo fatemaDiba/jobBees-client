@@ -46,3 +46,12 @@
 .dashLink.active::after {
   width: 100%;
 }
+
+/* sweetalertbtn */
+.custom-btn {
+  background-color: #0057d1 !important;
+  color: white !important;
+  border-radius: 5px;
+  padding: 8px 16px;
+  border: none !important;
+}
