@@ -25,17 +25,32 @@ const Contact = () => {
 
   const sendEmail = (e) => {
     e.preventDefault();
-
+    const form = e.target;
+    const name = form.from_name.value;
     emailjs
       .sendForm("service_bb3kl2g", "template_9htym4s", form.current, {
         publicKey: "23eiqjRap3Ch39u3M",
       })
       .then(
         () => {
-          console.log("SUCCESS!");
+          Swal.fire({
+            title: `Thank You, ${name}!`,
+            text: "Your message has been received. We'll get back to you shortly!",
+            icon: "success",
+            confirmButtonText: "OK",
+            customClass: {
+              confirmButton: "custom-btn",
+            },
+          });
         },
         (error) => {
-          console.log("FAILED...", error.text);
+          Swal.fire({
+            position: "top-end",
+            icon: "error",
+            title: "Something Went Wrong!",
+            showConfirmButton: false,
+            timer: 1000,
+          });
         }
       );
   };
@@ -44,7 +59,7 @@ const Contact = () => {
     <div>
       <Title title="Contact Us"></Title>
       {/* Header Section */}
-      <section className="container mb-12 mx-auto mt-24">
+      <section className="w-11/12 mb-12 mx-auto mt-24">
         <div className="md:w-8/12 mx-auto space-y-2 text-center">
           <h4 className="text-lg font-bold text-gray-600">Contact JobBees</h4>
           <h2 className="text-2xl md:text-3xl text-light-primary">
@@ -66,24 +81,24 @@ const Contact = () => {
           <p className="mt-4 text-gray-700 text-lg">
             Whether you're a job seeker or an employer, we're here to help.
           </p>
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-16 mt-8 mx-auto items-center w-9/12">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-20 mt-8 mx-auto items-center w-10/12">
             {/* Contact Info */}
             <div className="space-y-6">
-              <div className="bg-white shadow-md rounded-lg p-6 text-center flex flex-col items-center">
+              <div className="bg-white shadow-xl rounded-lg p-6 text-center flex flex-col items-center">
                 <FaPhone className="text-light-primary text-4xl" />
                 <h4 className="text-lg font-semibold text-light-primary mt-4">
                   Phone
                 </h4>
                 <p className="text-sm text-gray-600">+1 (555) 123-4567</p>
               </div>
-              <div className="bg-white shadow-md rounded-lg p-6 text-center flex flex-col items-center">
+              <div className="bg-white shadow-xl rounded-lg p-6 text-center flex flex-col items-center">
                 <FaEnvelope className="text-light-primary text-4xl" />
                 <h4 className="text-lg font-semibold text-light-primary mt-4">
                   Email
                 </h4>
                 <p className="text-sm text-gray-600">support@jobbees.com</p>
               </div>
-              <div className="bg-white shadow-md rounded-lg p-6 text-center flex flex-col items-center">
+              <div className="bg-white shadow-xl rounded-lg p-6 text-center flex flex-col items-center">
                 <FaMapMarkerAlt className="text-light-primary text-4xl" />
                 <h4 className="text-lg font-semibold text-light-primary mt-4">
                   Address
@@ -95,7 +110,7 @@ const Contact = () => {
             </div>
 
             {/* Contact Form */}
-            <div className="bg-white">
+            <div className="bg-white p-6 shadow-xl">
               <div className="mx-auto text-center">
                 <h2 className="text-2xl font-bold text-light-primary">
                   Send Us a Message

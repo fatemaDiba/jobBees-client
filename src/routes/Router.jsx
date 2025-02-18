@@ -8,7 +8,6 @@ import Contact from "../footerRoutes/Contact";
 import About from "../footerRoutes/About";
 import Cookie from "../footerRoutes/Cookies";
 import PrivacyPolicy from "../footerRoutes/PrivacyPolicy";
-
 import PrivateUser from "../private/PrivateUser";
 import Dashboard from "../layout/Dashboard";
 import ManageTask from "../dashboard/AdminDashboard/manageTask/ManageTask";
