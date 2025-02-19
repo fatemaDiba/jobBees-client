@@ -1,18 +1,19 @@
 import { FaUserCircle } from "react-icons/fa";
 import useUser from "../hooks/useUser";
 import Title from "../components/Title";
+import useAuth from "../hooks/useAuth";
 
 const Profile = () => {
   const [userData, userLoading] = useUser();
-  console.log(userData);
+  const { user, loading } = useAuth();
   return (
     <div>
       <Title title="Profile"></Title>
       <section className="py-16 px-6 flex justify-center items-center">
         <div className="bg-white p-8 rounded-lg shadow-lg w-full max-w-3xl flex items-center">
-          {userData?.photo ? (
+          {user ? (
             <img
-              src={userData.photo}
+              src={user?.photoURL}
               alt="Profile"
               className="w-32 h-32 rounded-full shadow-lg border border-gray-300"
             />
@@ -27,11 +28,11 @@ const Profile = () => {
               Role: {userData?.userType}
             </p>
             <p className="text-gray-500 mt-2">{userData?.email}</p>
-            <div className="mt-6">
+            {/* <div className="mt-6">
               <button className="px-6 py-2 bg-blue-600 text-white rounded-lg shadow-md hover:bg-blue-700 transition">
                 Edit Profile
               </button>
-            </div>
+            </div> */}
           </div>
         </div>
       </section>
