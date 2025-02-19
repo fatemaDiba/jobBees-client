@@ -1,6 +1,6 @@
 import { NavLink } from "react-router-dom";
 import { IoHome } from "react-icons/io5";
-import { FaBars, FaTasks } from "react-icons/fa";
+import { FaBars, FaTasks, FaUser } from "react-icons/fa";
 import { FaUserCog } from "react-icons/fa";
 import { MdPayment } from "react-icons/md";
 import { HiClipboardDocumentList } from "react-icons/hi2";
@@ -33,6 +33,25 @@ const Sidebar = ({ sidebar, handleSidebar }) => {
               >
                 <IoHome />
                 <span className={`${sidebar ? "hidden" : "block"}`}>Home</span>
+              </div>
+            </NavLink>
+          </li>
+          <li>
+            <NavLink
+              to="/dashboard/admin-profile"
+              className={({ isActive }) =>
+                `${sidebar ? "" : isActive ? "active dashLink" : "dashLink"} `
+              }
+            >
+              <div
+                className={`flex items-center gap-2 ${
+                  sidebar ? "justify-center" : "justify-start"
+                } `}
+              >
+                <FaUser />
+                <span className={`${sidebar ? "hidden" : "block"}`}>
+                  Profile
+                </span>
               </div>
             </NavLink>
           </li>
@@ -93,6 +112,25 @@ const Sidebar = ({ sidebar, handleSidebar }) => {
               >
                 <IoHome />
                 <span className={`${sidebar ? "hidden" : "block"}`}>Home</span>
+              </div>
+            </NavLink>
+          </li>
+          <li>
+            <NavLink
+              to="/dashboard/buyer-profile"
+              className={({ isActive }) =>
+                `${sidebar ? "" : isActive ? "active dashLink" : "dashLink"} `
+              }
+            >
+              <div
+                className={`flex items-center gap-2 ${
+                  sidebar ? "justify-center" : "justify-start"
+                } `}
+              >
+                <FaUser />
+                <span className={`${sidebar ? "hidden" : "block"}`}>
+                  Profile
+                </span>
               </div>
             </NavLink>
           </li>
@@ -191,6 +229,25 @@ const Sidebar = ({ sidebar, handleSidebar }) => {
               >
                 <IoHome />
                 <span className={`${sidebar ? "hidden" : "block"}`}>Home</span>
+              </div>
+            </NavLink>
+          </li>
+          <li>
+            <NavLink
+              to="/dashboard/worker-profile"
+              className={({ isActive }) =>
+                `${sidebar ? "" : isActive ? "active dashLink" : "dashLink"} `
+              }
+            >
+              <div
+                className={`flex items-center gap-2 ${
+                  sidebar ? "justify-center" : "justify-start"
+                } `}
+              >
+                <FaUser />
+                <span className={`${sidebar ? "hidden" : "block"}`}>
+                  Profile
+                </span>
               </div>
             </NavLink>
           </li>

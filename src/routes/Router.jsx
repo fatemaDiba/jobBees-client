@@ -30,6 +30,7 @@ import PrivateWorkerRoutes from "../private/PrivateWorkerRoutes";
 import PrivateAdminRoutes from "../private/PrivateAdminRoutes";
 import { Home as DashboardHome } from "../dashboard/Home";
 import TermsOfUse from "../footerRoutes/TermOfUse";
+import Profile from "../dashboard/Profile";
 
 const router = createBrowserRouter([
   {
@@ -98,6 +99,14 @@ const router = createBrowserRouter([
         ),
       },
       {
+        path: "/dashboard/admin-profile",
+        element: (
+          <PrivateAdminRoutes>
+            <Profile></Profile>
+          </PrivateAdminRoutes>
+        ),
+      },
+      {
         path: "/dashboard/manage-task",
         element: (
           <PrivateAdminRoutes>
@@ -119,6 +128,14 @@ const router = createBrowserRouter([
         element: (
           <PrivateUserRoutes>
             <BuyerHome></BuyerHome>
+          </PrivateUserRoutes>
+        ),
+      },
+      {
+        path: "/dashboard/buyer-profile",
+        element: (
+          <PrivateUserRoutes>
+            <Profile></Profile>
           </PrivateUserRoutes>
         ),
       },
@@ -176,6 +193,14 @@ const router = createBrowserRouter([
         element: (
           <PrivateWorkerRoutes>
             <WorkerHome></WorkerHome>
+          </PrivateWorkerRoutes>
+        ),
+      },
+      {
+        path: "/dashboard/worker-profile",
+        element: (
+          <PrivateWorkerRoutes>
+            <Profile></Profile>
           </PrivateWorkerRoutes>
         ),
       },
